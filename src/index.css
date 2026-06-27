@@ -1,0 +1,194 @@
+/* ============================================================
+   JBMJ & Associates — Global styles & design tokens
+   ============================================================ */
+
+:root {
+  /* Brand palette */
+  --navy-900: #07172b;
+  --navy-800: #0a1a2f;
+  --navy-700: #102a43;
+  --navy-600: #163a5f;
+  --gold-500: #c39b46;
+  --gold-400: #d4b160;
+  --gold-300: #e6cf94;
+  --cream: #f7f4ee;
+  --cream-2: #efeae0;
+  --paper: #ffffff;
+  --ink: #14202e;
+  --muted: #5d6b7a;
+  --muted-2: #8a96a3;
+  --line: #e7e2d8;
+  --line-dark: rgba(255, 255, 255, 0.12);
+
+  /* Typography */
+  --font-serif: 'Fraunces', 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Layout */
+  --container: 1200px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --shadow-sm: 0 1px 2px rgba(7, 23, 43, 0.06);
+  --shadow-md: 0 18px 40px -18px rgba(7, 23, 43, 0.28);
+  --shadow-lg: 0 40px 80px -30px rgba(7, 23, 43, 0.45);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--navy-800);
+  margin: 0;
+}
+
+p { margin: 0; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img { display: block; max-width: 100%; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+button { font-family: inherit; cursor: pointer; }
+
+/* ---------- Layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 96px 0;
+}
+
+.section--tight { padding: 72px 0; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-500);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: var(--gold-500);
+}
+
+.eyebrow--center { justify-content: center; }
+.eyebrow--center::before { display: none; }
+
+.section-title {
+  font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+  margin-top: 18px;
+}
+
+.section-lead {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 60ch;
+}
+
+.text-center { text-align: center; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease),
+    background 0.25s var(--ease), color 0.25s var(--ease);
+}
+
+.btn svg { transition: transform 0.25s var(--ease); }
+.btn:hover svg { transform: translateX(3px); }
+
+.btn--gold {
+  background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+  color: var(--navy-900);
+  box-shadow: 0 14px 30px -12px rgba(195, 155, 70, 0.7);
+}
+.btn--gold:hover { transform: translateY(-2px); }
+
+.btn--navy {
+  background: var(--navy-800);
+  color: #fff;
+}
+.btn--navy:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+.btn--ghost {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+.btn--ghost:hover { background: rgba(255, 255, 255, 0.08); }
+
+.btn--outline {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--navy-800);
+}
+.btn--outline:hover { border-color: var(--navy-800); }
+
+/* ---------- Reveal-on-scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .section { padding: 68px 0; }
+  .container { padding: 0 20px; }
+}
