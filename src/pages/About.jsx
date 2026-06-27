@@ -9,7 +9,7 @@ const pillars = [
   {
     icon: FiTarget,
     title: 'Our Mission',
-    text: 'To deliver dependable, insight-led financial and compliance services that empower our clients to make confident, well-informed decisions.',
+    text: 'To deliver end-to-end, insight-led financial and compliance services with objectivity and integrity — empowering our clients to make confident, well-informed decisions.',
   },
   {
     icon: FiEye,
@@ -18,8 +18,8 @@ const pillars = [
   },
   {
     icon: FiHeart,
-    title: 'Our Values',
-    text: 'Integrity, diligence and accountability. We treat every engagement with the care, confidentiality and rigour it deserves.',
+    title: 'Our Motto',
+    text: '“Right solutions, delivered with objectivity and integrity.” We help our clients create value and build lasting wealth.',
   },
 ]
 
@@ -83,7 +83,24 @@ export default function About() {
         </div>
       </section>
 
-      {/* Mission / Vision / Values */}
+      {/* Objective */}
+      <section className="section--tight">
+        <div className="container">
+          <div className="objective reveal">
+            <span className="objective__mark">“</span>
+            <span className="eyebrow">Our Objective</span>
+            <p className="objective__text">
+              Our objective is to provide end-to-end services to our clients,
+              encompassing accountancy, compliance, auditing and assurance, filing
+              procedures, taxation, and fund-raising consultancy. We are committed
+              to delivering the right solutions with objectivity and integrity,
+              empowering our clients to create value and build lasting wealth.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission / Vision / Motto */}
       <section className="section why-sec">
         <div className="container">
           <SectionHeading

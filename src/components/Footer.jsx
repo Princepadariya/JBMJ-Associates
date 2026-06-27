@@ -9,7 +9,7 @@ import {
 import { FaLinkedinIn, FaInstagram, FaFacebookF } from 'react-icons/fa'
 import Logo from './Logo'
 import { firm } from '../data/firm'
-import { services } from '../data/services'
+import { serviceHighlights } from '../data/services'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -33,20 +33,21 @@ export default function Footer() {
         <div className="footer__col">
           <h4 className="footer__head">Explore</h4>
           <ul>
-            <li><Link to="/about">About the Firm</Link></li>
+            <li><Link to="/about">About us</Link></li>
+            <li><Link to="/team">Our People</Link></li>
             <li><Link to="/services">Services</Link></li>
-            <li><Link to="/team">Our Team</Link></li>
-            <li><Link to="/resources">Resources</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/knowledge">Knowledge Bank</Link></li>
+            <li><Link to="/careers">Careers</Link></li>
+            <li><Link to="/contact">Contact us</Link></li>
           </ul>
         </div>
 
         <div className="footer__col">
           <h4 className="footer__head">Services</h4>
           <ul>
-            {services.slice(0, 6).map((s) => (
-              <li key={s.id}>
-                <Link to="/services">{s.title}</Link>
+            {serviceHighlights.slice(0, 6).map((title) => (
+              <li key={title}>
+                <Link to="/services">{title}</Link>
               </li>
             ))}
           </ul>

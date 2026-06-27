@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { FiArrowRight, FiCheck } from 'react-icons/fi'
+import { FiArrowRight, FiArrowUpRight } from 'react-icons/fi'
 import useReveal from '../hooks/useReveal'
 import PageHero from '../components/PageHero'
 import SectionHeading from '../components/SectionHeading'
-import { services } from '../data/services'
+import { serviceCategories } from '../data/services'
 
 export default function Services() {
   useReveal()
@@ -11,37 +11,39 @@ export default function Services() {
     <>
       <PageHero
         eyebrow="Our Services"
-        title="Full-spectrum financial, tax & compliance services"
-        lead="One team for audit, taxation, GST, corporate law and advisory — delivered with precision and a partner’s attention to detail."
+        title="End-to-end services for compliance, assurance & growth"
+        lead="From audit and taxation to accounting, incorporation and project finance — a single, dependable team across every category your business needs."
         crumb="Services"
       />
 
       <section className="section">
         <div className="container">
-          <div className="services-detail">
-            {services.map((s, i) => {
-              const Icon = s.icon
-              return (
-                <article key={s.id} className="service-row reveal" id={s.id}>
-                  <div className="service-row__index">
-                    <span className="service-row__icon"><Icon /></span>
-                    <span className="service-row__num">
-                      {String(i + 1).padStart(2, '0')}
+          {serviceCategories.map((cat, i) => {
+            const Icon = cat.icon
+            return (
+              <div key={cat.id} className="svc-cat reveal" id={cat.id}>
+                <div className="svc-cat__head">
+                  <span className="svc-cat__icon"><Icon /></span>
+                  <div>
+                    <span className="svc-cat__kicker">
+                      Service Category {String(i + 1).padStart(2, '0')}
                     </span>
+                    <h2 className="svc-cat__title">{cat.category}</h2>
+                    <p className="svc-cat__summary">{cat.summary}</p>
                   </div>
-                  <div className="service-row__main">
-                    <h3 className="service-row__title">{s.title}</h3>
-                    <p className="service-row__summary">{s.summary}</p>
-                  </div>
-                  <ul className="service-row__points">
-                    {s.points.map((p) => (
-                      <li key={p}><FiCheck /> {p}</li>
-                    ))}
-                  </ul>
-                </article>
-              )
-            })}
-          </div>
+                </div>
+
+                <div className="svc-cat__items">
+                  {cat.items.map((item) => (
+                    <article key={item.title} className="svc-item">
+                      <h3 className="svc-item__title">{item.title}</h3>
+                      <p className="svc-item__desc">{item.desc}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
         </div>
       </section>
 

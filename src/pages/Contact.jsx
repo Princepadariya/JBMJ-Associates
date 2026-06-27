@@ -10,7 +10,7 @@ import {
 import useReveal from '../hooks/useReveal'
 import PageHero from '../components/PageHero'
 import { firm } from '../data/firm'
-import { services } from '../data/services'
+import { serviceCategories } from '../data/services'
 
 export default function Contact() {
   useReveal()
@@ -114,8 +114,12 @@ export default function Contact() {
                     Service of interest
                     <select name="service" defaultValue="">
                       <option value="" disabled>Select a service</option>
-                      {services.map((s) => (
-                        <option key={s.id} value={s.title}>{s.title}</option>
+                      {serviceCategories.map((cat) => (
+                        <optgroup key={cat.id} label={cat.category}>
+                          {cat.items.map((item) => (
+                            <option key={item.title} value={item.title}>{item.title}</option>
+                          ))}
+                        </optgroup>
                       ))}
                       <option value="Other">Other</option>
                     </select>

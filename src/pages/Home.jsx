@@ -9,15 +9,14 @@ import {
   FiClock,
   FiAward,
 } from 'react-icons/fi'
-import { FaQuoteLeft } from 'react-icons/fa'
 import useReveal from '../hooks/useReveal'
 import SectionHeading from '../components/SectionHeading'
 import TeamCard from '../components/TeamCard'
 import Faq from '../components/Faq'
-import { services } from '../data/services'
+import Testimonials from '../components/Testimonials'
+import { serviceCategories } from '../data/services'
 import { team } from '../data/team'
 import { industries } from '../data/industries'
-import { testimonials } from '../data/testimonials'
 
 const stats = [
   { value: '8+', label: 'Service verticals' },
@@ -221,20 +220,20 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="services-grid">
-            {services.map((s) => {
-              const Icon = s.icon
+          <div className="services-grid services-grid--cats">
+            {serviceCategories.map((cat) => {
+              const Icon = cat.icon
               return (
-                <article key={s.id} className="service-card reveal">
+                <article key={cat.id} className="service-card reveal">
                   <span className="service-card__icon"><Icon /></span>
-                  <h3 className="service-card__title">{s.title}</h3>
-                  <p className="service-card__summary">{s.summary}</p>
+                  <h3 className="service-card__title">{cat.category}</h3>
+                  <p className="service-card__summary">{cat.summary}</p>
                   <ul className="service-card__points">
-                    {s.points.slice(0, 3).map((p) => (
-                      <li key={p}><FiCheck /> {p}</li>
+                    {cat.items.slice(0, 4).map((item) => (
+                      <li key={item.title}><FiCheck /> {item.title}</li>
                     ))}
                   </ul>
-                  <Link to="/services" className="service-card__link">
+                  <Link to={`/services#${cat.id}`} className="service-card__link">
                     Learn more <FiArrowUpRight />
                   </Link>
                 </article>
@@ -343,23 +342,10 @@ export default function Home() {
             light
             eyebrow="Client Voices"
             title="Trusted by businesses that value diligence"
+            lead="Real results across audit, tax, funding and corporate compliance — here’s what working with JBMJ feels like."
           />
-          <div className="testi-grid">
-            {testimonials.map((t, i) => (
-              <figure key={i} className="testi-card reveal">
-                <FaQuoteLeft className="testi-card__quote" />
-                <blockquote>{t.quote}</blockquote>
-                <figcaption>
-                  <span className="testi-card__avatar">{t.name.charAt(0)}</span>
-                  <span>
-                    <strong>{t.name}</strong>
-                    <small>{t.role}</small>
-                  </span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
         </div>
+        <Testimonials />
       </section>
 
       {/* ============== FAQ ============== */}
