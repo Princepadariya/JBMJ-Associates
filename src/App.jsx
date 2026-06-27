@@ -8,6 +8,7 @@ import About from './pages/About'
 import Services from './pages/Services'
 import Team from './pages/Team'
 import KnowledgeBank from './pages/KnowledgeBank'
+import KnowledgeSection from './pages/KnowledgeSection'
 import Careers from './pages/Careers'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
@@ -25,6 +26,7 @@ export default function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/team" element={<Team />} />
           <Route path="/knowledge" element={<KnowledgeBank />} />
+          <Route path="/knowledge/:section" element={<KnowledgeSection />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />

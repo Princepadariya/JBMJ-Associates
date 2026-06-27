@@ -4,12 +4,12 @@ import { FiMenu, FiX, FiArrowRight, FiChevronDown } from 'react-icons/fi'
 import Logo from './Logo'
 
 const knowledgeItems = [
-  { to: '/knowledge#calculators', label: 'Calculators' },
-  { to: '/knowledge#bulletins', label: 'Bulletins' },
-  { to: '/knowledge#links', label: 'Links' },
-  { to: '/knowledge#acts', label: 'Acts' },
-  { to: '/knowledge#rules', label: 'Rules' },
-  { to: '/knowledge#forms', label: 'Forms' },
+  { to: '/knowledge/calculators', label: 'Calculators' },
+  { to: '/knowledge/bulletins', label: 'Bulletins' },
+  { to: '/knowledge/links', label: 'Links' },
+  { to: '/knowledge/acts', label: 'Acts' },
+  { to: '/knowledge/rules', label: 'Rules' },
+  { to: '/knowledge/forms', label: 'Forms' },
 ]
 
 const links = [

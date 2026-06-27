@@ -1,11 +1,11 @@
 /*
   Team data for JBMJ & Associates.
   ----------------------------------------------------------------
-  To add a photo for a member, drop the image into:
-      src/assets/team/
-  then set the `photo` field below to its import, e.g.:
-      import mihir from '../assets/team/mihir-busa.jpg'
-      ... photo: mihir ...
+  To add a photo for a member:
+    1. Drop the image into  public/images/team/   (e.g. mihir-busa.jpg)
+    2. Set the `photo` field below to its path, e.g.
+         photo: '/images/team/mihir-busa.jpg',
+  No import needed — files in public/ are served from the site root.
   Until a photo is provided, an elegant monogram placeholder is shown.
 */
 
@@ -15,7 +15,7 @@ export const team = [
     name: 'CA Mihir Busa',
     role: 'Founding & Designated Partner',
     credential: 'Chartered Accountant',
-    photo: null, // place src/assets/team/mihir-busa.jpg and import here
+    photo: null, // e.g. '/images/team/mihir-busa.jpg' (file in public/images/team/)
     bio: 'Mihir Busa is a qualified Chartered Accountant who leads the firm’s strategic direction with a strong focus on professional excellence, client-centric advisory, and practical business solutions.',
     extended:
       'His core expertise spans Assurance & Audits, CMA & Banking Reports, Income Tax & GST Advisory, Accounting, and Startup Funding Services. He plays a key role in the firm’s operations with structured compliance support, financial insight, and growth-oriented advisory.',

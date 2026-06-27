@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { FiPercent, FiHome, FiPieChart } from 'react-icons/fi'
+import { FiPercent, FiHome, FiPieChart, FiKey, FiGift } from 'react-icons/fi'
 
 const inr = (n) =>
   isFinite(n)
@@ -152,10 +152,98 @@ function IncomeTaxCalculator() {
   )
 }
 
+/* ---------------- HRA Exemption Calculator ---------------- */
+function HraCalculator() {
+  const [basic, setBasic] = useState(50000)
+  const [hra, setHra] = useState(20000)
+  const [rent, setRent] = useState(18000)
+  const [metro, setMetro] = useState('yes')
+
+  const { exempt, taxable } = useMemo(() => {
+    const b = Number(basic) || 0
+    const h = Number(hra) || 0
+    const r = Number(rent) || 0
+    const a = h // actual HRA received (monthly)
+    const c = Math.max(0, r - 0.1 * b) // rent paid - 10% of basic
+    const d = (metro === 'yes' ? 0.5 : 0.4) * b // 50%/40% of basic
+    const e = Math.max(0, Math.min(a, c, d))
+    return { exempt: e, taxable: Math.max(0, h - e) }
+  }, [basic, hra, rent, metro])
+
+  return (
+    <div className="calc">
+      <div className="calc__fields">
+        <label className="calc__field">
+          Basic salary (monthly ₹)
+          <input type="number" min="0" value={basic} onChange={(e) => setBasic(e.target.value)} />
+        </label>
+        <label className="calc__field">
+          HRA received (monthly ₹)
+          <input type="number" min="0" value={hra} onChange={(e) => setHra(e.target.value)} />
+        </label>
+        <label className="calc__field">
+          Rent paid (monthly ₹)
+          <input type="number" min="0" value={rent} onChange={(e) => setRent(e.target.value)} />
+        </label>
+        <label className="calc__field">
+          Metro city?
+          <select value={metro} onChange={(e) => setMetro(e.target.value)}>
+            <option value="yes">Yes (50%)</option>
+            <option value="no">No (40%)</option>
+          </select>
+        </label>
+      </div>
+      <div className="calc__results">
+        <div className="calc__result"><span>HRA received</span><strong>{inr(Number(hra) || 0)}</strong></div>
+        <div className="calc__result"><span>Taxable HRA</span><strong>{inr(taxable)}</strong></div>
+        <div className="calc__result calc__result--total"><span>Exempt HRA</span><strong>{inr(exempt)}</strong></div>
+      </div>
+    </div>
+  )
+}
+
+/* ---------------- Gratuity Calculator ---------------- */
+function GratuityCalculator() {
+  const [salary, setSalary] = useState(60000)
+  const [years, setYears] = useState(10)
+
+  const gratuity = useMemo(() => {
+    const s = Number(salary) || 0 // last drawn basic + DA (monthly)
+    const y = Number(years) || 0
+    // Payment of Gratuity Act formula: (15/26) × salary × years
+    return (15 / 26) * s * y
+  }, [salary, years])
+
+  return (
+    <div className="calc">
+      <div className="calc__fields">
+        <label className="calc__field">
+          Last drawn salary (Basic + DA, monthly ₹)
+          <input type="number" min="0" value={salary} onChange={(e) => setSalary(e.target.value)} />
+        </label>
+        <label className="calc__field">
+          Years of service
+          <input type="number" min="0" value={years} onChange={(e) => setYears(e.target.value)} />
+        </label>
+        <div className="calc__field calc__field--note">
+          Basis
+          <span className="calc__hint">Payment of Gratuity Act · (15 ÷ 26) × salary × years</span>
+        </div>
+      </div>
+      <div className="calc__results">
+        <div className="calc__result"><span>Years of service</span><strong>{Number(years) || 0}</strong></div>
+        <div className="calc__result calc__result--total"><span>Gratuity payable</span><strong>{inr(gratuity)}</strong></div>
+      </div>
+    </div>
+  )
+}
+
 const CALCS = [
-  { id: 'gst', label: 'GST Calculator', icon: FiPercent, Comp: GstCalculator },
-  { id: 'emi', label: 'EMI Calculator', icon: FiHome, Comp: EmiCalculator },
+  { id: 'gst', label: 'GST', icon: FiPercent, Comp: GstCalculator },
+  { id: 'emi', label: 'EMI', icon: FiHome, Comp: EmiCalculator },
   { id: 'tax', label: 'Income Tax', icon: FiPieChart, Comp: IncomeTaxCalculator },
+  { id: 'hra', label: 'HRA', icon: FiKey, Comp: HraCalculator },
+  { id: 'gratuity', label: 'Gratuity', icon: FiGift, Comp: GratuityCalculator },
 ]
 
 export default function Calculators() {
