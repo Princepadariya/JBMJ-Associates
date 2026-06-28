@@ -48,54 +48,56 @@ export default function Navbar() {
   }, [open])
 
   return (
-    <header className={`nav ${scrolled ? 'nav--scrolled' : ''} ${open ? 'nav--open' : ''}`}>
-      <div className="container nav__inner">
-        <Logo variant={scrolled ? 'dark' : 'light'} />
+    <>
+      <header className={`nav ${scrolled ? 'nav--scrolled' : ''} ${open ? 'nav--open' : ''}`}>
+        <div className="container nav__inner">
+          <Logo variant={scrolled ? 'dark' : 'light'} />
 
-        <nav className="nav__links" aria-label="Primary">
-          {links.map((l) =>
-            l.children ? (
-              <div className="nav__item nav__item--has-sub" key={l.to}>
+          <nav className="nav__links" aria-label="Primary">
+            {links.map((l) =>
+              l.children ? (
+                <div className="nav__item nav__item--has-sub" key={l.to}>
+                  <NavLink
+                    to={l.to}
+                    className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
+                  >
+                    {l.label} <FiChevronDown className="nav__caret" />
+                  </NavLink>
+                  <div className="nav__dropdown">
+                    {l.children.map((c) => (
+                      <NavLink key={c.to} to={c.to} className="nav__dropdown-link">
+                        {c.label}
+                      </NavLink>
+                    ))}
+                  </div>
+                </div>
+              ) : (
                 <NavLink
+                  key={l.to}
                   to={l.to}
+                  end={l.end}
                   className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
                 >
-                  {l.label} <FiChevronDown className="nav__caret" />
+                  {l.label}
                 </NavLink>
-                <div className="nav__dropdown">
-                  {l.children.map((c) => (
-                    <NavLink key={c.to} to={c.to} className="nav__dropdown-link">
-                      {c.label}
-                    </NavLink>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <NavLink
-                key={l.to}
-                to={l.to}
-                end={l.end}
-                className={({ isActive }) => `nav__link ${isActive ? 'is-active' : ''}`}
-              >
-                {l.label}
-              </NavLink>
-            )
-          )}
-        </nav>
+              )
+            )}
+          </nav>
 
-        <NavLink to="/contact" className="btn btn--gold nav__cta">
-          Book a Consultation <FiArrowRight />
-        </NavLink>
+          <NavLink to="/contact" className="btn btn--gold nav__cta">
+            Book a Consultation <FiArrowRight />
+          </NavLink>
 
-        <button
-          className="nav__toggle"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <FiX /> : <FiMenu />}
-        </button>
-      </div>
+          <button
+            className="nav__toggle"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <FiX /> : <FiMenu />}
+          </button>
+        </div>
+      </header>
 
       <div className={`nav__drawer ${open ? 'is-open' : ''}`}>
         <nav aria-label="Mobile">
@@ -136,6 +138,6 @@ export default function Navbar() {
           Book a Consultation <FiArrowRight />
         </NavLink>
       </div>
-    </header>
+    </>
   )
 }
