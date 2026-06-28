@@ -48,7 +48,7 @@ export default function Navbar() {
   }, [open])
 
   return (
-    <header className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
+    <header className={`nav ${scrolled ? 'nav--scrolled' : ''} ${open ? 'nav--open' : ''}`}>
       <div className="container nav__inner">
         <Logo variant={scrolled ? 'dark' : 'light'} />
 

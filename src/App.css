@@ -143,8 +143,13 @@
   font-size: 1.7rem;
   color: #fff;
   line-height: 0;
+  position: relative;
+  z-index: 120;
 }
-.nav--scrolled .nav__toggle { color: var(--navy-800); }
+.nav--open .nav__toggle {
+  color: #fff;
+}
+.nav--scrolled:not(.nav--open) .nav__toggle { color: var(--navy-800); }
 
 .nav__drawer {
   position: fixed;
