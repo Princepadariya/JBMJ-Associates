@@ -5,6 +5,7 @@ import Logo from './Logo'
 
 const knowledgeItems = [
   { to: '/knowledge/calculators', label: 'Calculators' },
+  { to: '/knowledge/due-dates', label: 'Due Dates' },
   { to: '/knowledge/bulletins', label: 'Bulletins' },
   { to: '/knowledge/links', label: 'Links' },
   { to: '/knowledge/acts', label: 'Acts' },

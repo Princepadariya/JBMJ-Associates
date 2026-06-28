@@ -11,12 +11,17 @@ import {
   ruleGroups,
   formGroups,
   calculatorList,
+  dueDateGroups,
 } from '../data/knowledge'
 
 const META = {
   calculators: {
     title: 'Financial Calculators',
     lead: 'Quick, interactive estimates for GST, loan EMIs, income tax, HRA and gratuity.',
+  },
+  'due-dates': {
+    title: 'Compliance Calendar',
+    lead: 'Key recurring statutory due dates for Income Tax, TDS, GST, ROC and payroll.',
   },
   bulletins: {
     title: 'Bulletins & Updates',
@@ -123,6 +128,28 @@ export default function KnowledgeSection() {
                     <h3>{b.title}</h3>
                     <p>{b.desc}</p>
                   </article>
+                ))}
+              </div>
+            )}
+
+            {section === 'due-dates' && (
+              <div className="kb-groups">
+                {dueDateGroups.map((g) => (
+                  <div key={g.group} className="kb-group reveal">
+                    <h3 className="kb-group__title">{g.group}</h3>
+                    <div className="duedate-list">
+                      {g.items.map((d, i) => (
+                        <div key={i} className="duedate-row">
+                          <span className="duedate-row__date">{d.date}</span>
+                          <div className="duedate-row__body">
+                            <span className="duedate-row__tag">{d.tag}</span>
+                            <h4>{d.title}</h4>
+                            <p>{d.desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             )}

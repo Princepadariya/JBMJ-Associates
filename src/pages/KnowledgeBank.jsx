@@ -6,6 +6,7 @@ import { KB_SECTIONS } from '../components/KnowledgeNav'
 
 const blurbs = {
   calculators: 'Interactive GST, EMI, income-tax, HRA and gratuity calculators.',
+  'due-dates': 'Key recurring deadlines for Income Tax, TDS, GST, ROC and payroll.',
   bulletins: 'Timely notes and reminders on tax, GST and corporate compliance.',
   links: 'Quick access to official government and regulatory portals.',
   acts: 'Key legislation governing taxation and corporate law.',

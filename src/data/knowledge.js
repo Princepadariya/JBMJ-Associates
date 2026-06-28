@@ -104,24 +104,44 @@ export const actGroups = [
     items: [
       { title: 'Central Goods & Services Tax Act, 2017', href: 'https://www.cbic.gov.in/' },
       { title: 'Integrated GST Act, 2017', href: 'https://www.cbic.gov.in/' },
+      { title: 'Union Territory GST Act, 2017', href: 'https://www.cbic.gov.in/' },
       { title: 'GST (Compensation to States) Act, 2017', href: 'https://www.cbic.gov.in/' },
       { title: 'Customs Act, 1962', href: 'https://www.cbic.gov.in/' },
+      { title: 'Central Excise Act, 1944', href: 'https://www.cbic.gov.in/' },
     ],
   },
   {
-    group: 'Corporate',
+    group: 'Corporate & Securities',
     items: [
       { title: 'Companies Act, 2013', href: 'https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks/acts.html' },
       { title: 'Limited Liability Partnership Act, 2008', href: 'https://www.mca.gov.in/' },
       { title: 'Indian Partnership Act, 1932', href: 'https://www.indiacode.nic.in/' },
       { title: 'Insolvency & Bankruptcy Code, 2016', href: 'https://www.ibbi.gov.in/' },
+      { title: 'Securities & Exchange Board of India Act, 1992', href: 'https://www.sebi.gov.in/' },
+      { title: 'Securities Contracts (Regulation) Act, 1956', href: 'https://www.sebi.gov.in/' },
+      { title: 'Competition Act, 2002', href: 'https://www.cci.gov.in/' },
     ],
   },
   {
-    group: 'Other Laws',
+    group: 'Labour & Employment',
+    items: [
+      { title: 'Employees’ Provident Funds & Misc. Provisions Act, 1952', href: 'https://www.epfindia.gov.in/' },
+      { title: 'Employees’ State Insurance Act, 1948', href: 'https://www.esic.gov.in/' },
+      { title: 'Payment of Gratuity Act, 1972', href: 'https://labour.gov.in/' },
+      { title: 'Payment of Bonus Act, 1965', href: 'https://labour.gov.in/' },
+      { title: 'Code on Wages, 2019', href: 'https://labour.gov.in/' },
+    ],
+  },
+  {
+    group: 'Allied & Other Laws',
     items: [
       { title: 'Foreign Exchange Management Act, 1999', href: 'https://www.rbi.org.in/' },
+      { title: 'Prevention of Money Laundering Act, 2002', href: 'https://www.indiacode.nic.in/' },
+      { title: 'MSMED Act, 2006', href: 'https://msme.gov.in/' },
+      { title: 'The Indian Contract Act, 1872', href: 'https://www.indiacode.nic.in/' },
+      { title: 'The Negotiable Instruments Act, 1881', href: 'https://www.indiacode.nic.in/' },
       { title: 'The Indian Stamp Act, 1899', href: 'https://www.indiacode.nic.in/' },
+      { title: 'The Chartered Accountants Act, 1949', href: 'https://www.icai.org/' },
       { title: 'Finance Act (current year)', href: 'https://www.indiabudget.gov.in/' },
       { title: 'Right to Information Act, 2005', href: 'https://rti.gov.in/' },
     ],
@@ -142,6 +162,7 @@ export const ruleGroups = [
     items: [
       { title: 'CGST Rules, 2017', href: 'https://www.cbic.gov.in/' },
       { title: 'IGST Rules, 2017', href: 'https://www.cbic.gov.in/' },
+      { title: 'UTGST Rules, 2017', href: 'https://www.cbic.gov.in/' },
       { title: 'Customs Rules & Regulations', href: 'https://www.cbic.gov.in/' },
     ],
   },
@@ -151,14 +172,26 @@ export const ruleGroups = [
       { title: 'Companies (Accounts) Rules, 2014', href: 'https://www.mca.gov.in/' },
       { title: 'Companies (Audit & Auditors) Rules, 2014', href: 'https://www.mca.gov.in/' },
       { title: 'Companies (Incorporation) Rules, 2014', href: 'https://www.mca.gov.in/' },
+      { title: 'Companies (Share Capital & Debentures) Rules, 2014', href: 'https://www.mca.gov.in/' },
+      { title: 'Companies (Meetings of Board & its Powers) Rules, 2014', href: 'https://www.mca.gov.in/' },
+      { title: 'Companies (Appointment & Qualification of Directors) Rules, 2014', href: 'https://www.mca.gov.in/' },
       { title: 'LLP Rules, 2009', href: 'https://www.mca.gov.in/' },
+    ],
+  },
+  {
+    group: 'Labour & Employment',
+    items: [
+      { title: 'EPF Scheme, 1952', href: 'https://www.epfindia.gov.in/' },
+      { title: 'ESI (General) Regulations, 1950', href: 'https://www.esic.gov.in/' },
+      { title: 'Payment of Gratuity Rules, 1972', href: 'https://labour.gov.in/' },
     ],
   },
   {
     group: 'Other',
     items: [
       { title: 'FEMA Rules & Regulations', href: 'https://www.rbi.org.in/' },
-      { title: 'EPF Scheme Rules', href: 'https://www.epfindia.gov.in/' },
+      { title: 'PMLA (Maintenance of Records) Rules, 2005', href: 'https://www.indiacode.nic.in/' },
+      { title: 'MSMED Rules', href: 'https://msme.gov.in/' },
     ],
   },
 ]
@@ -200,6 +233,64 @@ export const formGroups = [
       { title: 'Form 8', desc: 'Statement of account & solvency', href: 'https://www.mca.gov.in/' },
       { title: 'Form 11', desc: 'Annual return of LLP', href: 'https://www.mca.gov.in/' },
       { title: 'FiLLiP', desc: 'LLP incorporation', href: 'https://www.mca.gov.in/' },
+    ],
+  },
+  {
+    group: 'Payroll · PF & ESI',
+    items: [
+      { title: 'PF – ECR', desc: 'Electronic Challan cum Return', href: 'https://www.epfindia.gov.in/' },
+      { title: 'EPF Form 11', desc: 'New employee declaration', href: 'https://www.epfindia.gov.in/' },
+      { title: 'UAN / KYC', desc: 'Universal Account Number & KYC', href: 'https://unifiedportal-mem.epfindia.gov.in/' },
+      { title: 'ESI Return of Contribution', desc: 'Half-yearly ESI return', href: 'https://www.esic.gov.in/' },
+      { title: 'ESI Registration (Form 1)', desc: 'Employee insurance registration', href: 'https://www.esic.gov.in/' },
+    ],
+  },
+  {
+    group: 'Other Registrations',
+    items: [
+      { title: 'Udyam Registration', desc: 'MSME registration', href: 'https://udyamregistration.gov.in/' },
+      { title: 'IEC', desc: 'Import-Export Code', href: 'https://www.dgft.gov.in/' },
+      { title: 'PAN / TAN (Form 49A / 49B)', desc: 'PAN & TAN application', href: 'https://www.incometax.gov.in/' },
+    ],
+  },
+]
+
+/* ---------------- Compliance / Due Dates ---------------- */
+// Indicative recurring statutory deadlines. Dates can change by notification —
+// always confirm the applicable date for the relevant year.
+export const dueDateGroups = [
+  {
+    group: 'Monthly',
+    items: [
+      { date: '7th', tag: 'Income Tax', title: 'TDS / TCS Payment', desc: 'Deposit of TDS/TCS deducted in the previous month.' },
+      { date: '11th', tag: 'GST', title: 'GSTR-1', desc: 'Outward supplies return for monthly filers.' },
+      { date: '13th', tag: 'GST', title: 'GSTR-1 (IFF) / GSTR-6', desc: 'QRMP invoice furnishing; input service distributor return.' },
+      { date: '15th', tag: 'Payroll', title: 'PF & ESI Payment', desc: 'Provident fund and ESI contributions for the previous month.' },
+      { date: '20th', tag: 'GST', title: 'GSTR-3B', desc: 'Summary return & tax payment for monthly filers.' },
+      { date: '25th', tag: 'GST', title: 'PMT-06', desc: 'Monthly tax payment for QRMP taxpayers.' },
+    ],
+  },
+  {
+    group: 'Quarterly',
+    items: [
+      { date: '15 Jun / Sep / Dec / Mar', tag: 'Income Tax', title: 'Advance Tax', desc: 'Instalments — 15% / 45% / 75% / 100% of estimated liability.' },
+      { date: '18th', tag: 'GST', title: 'CMP-08', desc: 'Statement-cum-challan for composition taxpayers.' },
+      { date: '31 Jul / Oct / Jan / May', tag: 'TDS', title: 'TDS Return (24Q / 26Q)', desc: 'Quarterly TDS statements.' },
+      { date: '13th', tag: 'GST', title: 'GSTR-1 (QRMP)', desc: 'Quarterly outward supplies for QRMP taxpayers.' },
+    ],
+  },
+  {
+    group: 'Annual',
+    items: [
+      { date: '31 May', tag: 'TDS', title: 'TDS Return Q4 / Form 16', desc: 'Q4 TDS statement; Form 16 to employees by 15 June.' },
+      { date: '30 May', tag: 'Corporate', title: 'LLP Form 11', desc: 'Annual return of LLP.' },
+      { date: '31 Jul', tag: 'Income Tax', title: 'ITR (Non-Audit)', desc: 'Income tax return for individuals & non-audit cases.' },
+      { date: '30 Sep', tag: 'Audit', title: 'Tax Audit Report', desc: 'Filing of tax audit report (3CA/3CB-3CD).' },
+      { date: '30 Oct', tag: 'Corporate', title: 'LLP Form 8', desc: 'Statement of account & solvency for LLPs.' },
+      { date: '31 Oct', tag: 'Income Tax', title: 'ITR (Audit) / TP', desc: 'Return for audit cases, companies & transfer-pricing.' },
+      { date: '29 Nov', tag: 'Corporate', title: 'ROC AOC-4 / MGT-7', desc: 'Company financial statements & annual return (post-AGM).' },
+      { date: '31 Dec', tag: 'GST', title: 'GSTR-9 / 9C', desc: 'Annual return & reconciliation statement.' },
+      { date: '31 Dec', tag: 'Income Tax', title: 'Belated / Revised ITR', desc: 'Last date for belated or revised income tax return.' },
     ],
   },
 ]

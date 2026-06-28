@@ -36,8 +36,10 @@ export default function Footer() {
             <li><Link to="/about">About us</Link></li>
             <li><Link to="/team">Our People</Link></li>
             <li><Link to="/services">Services</Link></li>
+            <li><Link to="/industries">Industries</Link></li>
             <li><Link to="/knowledge">Knowledge Bank</Link></li>
             <li><Link to="/careers">Careers</Link></li>
+            <li><Link to="/faq">FAQ</Link></li>
             <li><Link to="/contact">Contact us</Link></li>
           </ul>
         </div>
@@ -78,11 +80,18 @@ export default function Footer() {
       <div className="footer__bar">
         <div className="container footer__bar-inner">
           <p>© {year} {firm.name}. All rights reserved.</p>
-          <p className="footer__disc">
-            Chartered Accountants · {firm.city}
+          <p className="footer__bar-links">
+            <Link to="/privacy">Privacy &amp; Disclaimer</Link>
+            <span aria-hidden="true">·</span>
+            <span className="footer__disc">Chartered Accountants · {firm.city}</span>
           </p>
         </div>
       </div>
+
+      <p className="footer__legal">
+        This website is for informational purposes only and does not constitute
+        advertisement or solicitation, in accordance with ICAI guidelines.
+      </p>
     </footer>
   )
 }

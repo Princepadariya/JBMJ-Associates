@@ -138,6 +138,23 @@ button { font-family: inherit; cursor: pointer; }
 .text-center { text-align: center; }
 .mx-auto { margin-left: auto; margin-right: auto; }
 
+/* ---------- Skip link (accessibility) ---------- */
+.skip-link {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 200;
+  padding: 10px 18px;
+  background: var(--navy-800);
+  color: #fff;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transform: translateY(-150%);
+  transition: transform 0.2s var(--ease);
+}
+.skip-link:focus { transform: translateY(0); outline: 2px solid var(--gold-400); }
+
 /* ---------- Buttons (rectangular, restrained — editorial, not "SaaS pill") ---------- */
 .btn {
   display: inline-flex;

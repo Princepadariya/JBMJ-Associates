@@ -41,6 +41,10 @@ export default function Services() {
                     </article>
                   ))}
                 </div>
+
+                <Link to={`/services/${cat.id}`} className="svc-cat__more">
+                  View {cat.category} in detail <FiArrowRight />
+                </Link>
               </div>
             )
           })}

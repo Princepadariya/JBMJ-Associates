@@ -232,7 +232,7 @@ export default function Home() {
                       <li key={item.title}><FiCheck /> {item.title}</li>
                     ))}
                   </ul>
-                  <Link to={`/services#${cat.id}`} className="service-card__link">
+                  <Link to={`/services/${cat.id}`} className="service-card__link">
                     Learn more <FiArrowUpRight />
                   </Link>
                 </article>
@@ -255,12 +255,17 @@ export default function Home() {
             {industries.map((ind) => {
               const Icon = ind.icon
               return (
-                <div key={ind.label} className="industry-chip reveal">
+                <Link to="/industries" key={ind.label} className="industry-chip reveal">
                   <span className="industry-chip__icon"><Icon /></span>
                   <span>{ind.label}</span>
-                </div>
+                </Link>
               )
             })}
+          </div>
+          <div className="industries-cta reveal">
+            <Link to="/industries" className="btn btn--outline">
+              Explore all industries <FiArrowRight />
+            </Link>
           </div>
         </div>
       </section>
@@ -356,7 +361,12 @@ export default function Home() {
             title="Frequently asked questions"
             lead="Quick answers to what clients ask us most. Need something specific? Just reach out."
           />
-          <Faq />
+          <Faq limit={6} />
+          <div className="faq-more reveal">
+            <Link to="/faq" className="btn btn--outline">
+              See all FAQs <FiArrowRight />
+            </Link>
+          </div>
         </div>
       </section>
 

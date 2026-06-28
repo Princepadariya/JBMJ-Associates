@@ -2,12 +2,13 @@ import { useState } from 'react'
 import { FiPlus, FiMinus } from 'react-icons/fi'
 import { faqs } from '../data/faqs'
 
-export default function Faq() {
+export default function Faq({ limit }) {
   const [open, setOpen] = useState(0)
+  const list = limit ? faqs.slice(0, limit) : faqs
 
   return (
     <div className="faq reveal">
-      {faqs.map((f, i) => {
+      {list.map((f, i) => {
         const isOpen = open === i
         return (
           <div key={i} className={`faq__item ${isOpen ? 'is-open' : ''}`}>

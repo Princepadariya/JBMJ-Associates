@@ -14,13 +14,33 @@ import { serviceCategories } from '../data/services'
 
 export default function Contact() {
   useReveal()
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const sent = status === 'sent'
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Front-end demo: wire this to your email service / backend (e.g. Formspree,
-    // EmailJS, or your own API) to actually deliver enquiries.
-    setSent(true)
+    setStatus('sending')
+    const form = e.target
+    const data = Object.fromEntries(new FormData(form).entries())
+    try {
+      // Delivers enquiries straight to the firm's inbox via FormSubmit (no
+      // backend needed). The FIRST submission triggers a one-time activation
+      // email to firm.email — click the link in it to start receiving messages.
+      // To switch providers (Formspree / EmailJS / your own API), change the URL.
+      const res = await fetch(`https://formsubmit.co/ajax/${firm.email}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          _subject: `New enquiry from ${data.name || 'website'} — JBMJ & Associates`,
+        }),
+      })
+      if (!res.ok) throw new Error('Network response was not ok')
+      form.reset()
+      setStatus('sent')
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -83,10 +103,10 @@ export default function Contact() {
                 <FiCheckCircle />
                 <h3>Thank you for reaching out</h3>
                 <p>
-                  Your message has been captured. Connect this form to your
-                  preferred email service to start receiving enquiries directly.
+                  Your message has been sent to our team. We’ll get back to you
+                  shortly — usually within one working day.
                 </p>
-                <button className="btn btn--outline" onClick={() => setSent(false)}>
+                <button className="btn btn--outline" onClick={() => setStatus('idle')}>
                   Send another message
                 </button>
               </div>
@@ -132,11 +152,49 @@ export default function Contact() {
                     placeholder="How can we help you?"
                   />
                 </label>
-                <button type="submit" className="btn btn--gold contact-form__submit">
-                  Send message <FiSend />
+                {status === 'error' && (
+                  <p className="contact-form__error" role="alert">
+                    Something went wrong sending your message. Please try again, or
+                    email us directly at <a href={firm.emailHref}>{firm.email}</a>.
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  className="btn btn--gold contact-form__submit"
+                  disabled={status === 'sending'}
+                >
+                  {status === 'sending' ? 'Sending…' : <>Send message <FiSend /></>}
                 </button>
               </form>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* Office locations on map */}
+      <section className="section section--tight contact-maps-sec">
+        <div className="container">
+          <div className="contact-maps">
+            {firm.offices.map((o) => (
+              <div key={o.city} className="contact-map reveal">
+                <div className="contact-map__head">
+                  <FiMapPin />
+                  <div>
+                    <strong>{o.city} Office</strong>
+                    <span>{o.lines}</span>
+                  </div>
+                </div>
+                <iframe
+                  title={`${o.city} office location`}
+                  className="contact-map__frame"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                    o.lines + ', ' + o.city
+                  )}&output=embed`}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
