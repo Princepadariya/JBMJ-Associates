@@ -7,7 +7,6 @@ import {
   FiUsers,
   FiTrendingUp,
   FiClock,
-  FiAward,
 } from 'react-icons/fi'
 import useReveal from '../hooks/useReveal'
 import SectionHeading from '../components/SectionHeading'
@@ -64,20 +63,20 @@ export default function Home() {
       <section className="hero">
         <div className="hero__bg" aria-hidden="true">
           <span className="hero__grid" />
-          <span className="hero__glow hero__glow--1" />
-          <span className="hero__glow hero__glow--2" />
         </div>
 
         <div className="container hero__inner">
           <div className="hero__content">
-            <span className="hero__pill">
-              <FiAward /> Chartered Accountants · Rajkot
-            </span>
+            <div className="hero__overline">
+              <span className="hero__overline-rule" />
+              Chartered Accountants &amp; Company Secretaries · Rajkot
+            </div>
             <h1 className="hero__title">
               Clarity in numbers.
               <br />
               <em>Confidence</em> in decisions.
             </h1>
+            <span className="hero__title-rule" aria-hidden="true" />
             <p className="hero__lead">
               JBMJ &amp; Associates is a firm of Chartered Accountants and
               Company Secretaries delivering audit, taxation, GST, corporate law

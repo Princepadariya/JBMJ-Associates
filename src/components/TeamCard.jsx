@@ -1,6 +1,8 @@
+import { useState } from 'react'
+
 /*
-  Team member card. Shows the member photo when `member.photo` is set,
-  otherwise renders an elegant monogram placeholder.
+  Team member card. Shows the member photo when `member.photo` is set and
+  loads successfully; otherwise falls back to an elegant monogram placeholder.
 */
 function initials(name) {
   return name
@@ -13,11 +15,19 @@ function initials(name) {
 }
 
 export default function TeamCard({ member, detailed = false }) {
+  const [imgFailed, setImgFailed] = useState(false)
+  const showPhoto = member.photo && !imgFailed
+
   return (
     <article className={`team-card ${detailed ? 'team-card--detailed' : ''}`}>
       <div className="team-card__photo">
-        {member.photo ? (
-          <img src={member.photo} alt={member.name} loading="lazy" />
+        {showPhoto ? (
+          <img
+            src={member.photo}
+            alt={member.name}
+            loading="lazy"
+            onError={() => setImgFailed(true)}
+          />
         ) : (
           <div className="team-card__placeholder" aria-label={`${member.name} photo placeholder`}>
             <span className="team-card__monogram">{initials(member.name)}</span>

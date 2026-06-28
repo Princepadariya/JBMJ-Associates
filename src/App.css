@@ -195,36 +195,44 @@
 /* ===================== HERO ===================== */
 .hero {
   position: relative;
-  background: radial-gradient(120% 120% at 80% -10%, var(--navy-700), var(--navy-900) 60%);
+  background: linear-gradient(180deg, var(--navy-800) 0%, var(--navy-900) 100%);
   color: #fff;
   overflow: hidden;
   padding: 168px 0 0;
 }
 .hero__bg { position: absolute; inset: 0; pointer-events: none; }
+/* Architectural ruled grid — sharper & subtler than a glowy gradient */
 .hero__grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(100% 70% at 50% 0%, #000 40%, transparent 85%);
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 88px 88px;
+  background-position: center top;
+  mask-image: linear-gradient(180deg, #000 0%, transparent 78%);
 }
-.hero__glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.55;
+/* Editorial overline: a hairline rule + tracked label (replaces the AI pill) */
+.hero__overline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-300);
 }
-.hero__glow--1 {
-  width: 480px; height: 480px;
-  background: radial-gradient(circle, rgba(62, 124, 191, 0.45), transparent 70%);
-  top: -140px; right: -80px;
+.hero__overline-rule {
+  width: 44px; height: 1px;
+  background: var(--gold-400);
+  flex: none;
 }
-.hero__glow--2 {
-  width: 420px; height: 420px;
-  background: radial-gradient(circle, rgba(22, 58, 95, 0.9), transparent 70%);
-  bottom: -160px; left: -120px;
+.hero__title-rule {
+  display: block;
+  width: 72px; height: 3px;
+  margin-top: 30px;
+  background: var(--gold-400);
 }
 .hero__inner {
   position: relative;
@@ -234,26 +242,13 @@
   align-items: center;
   padding-bottom: 84px;
 }
-.hero__pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 8px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--gold-300);
-}
-.hero__pill svg { color: var(--gold-400); }
 .hero__title {
   color: #fff;
-  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
   font-weight: 600;
-  margin-top: 26px;
-  letter-spacing: -0.02em;
+  margin-top: 28px;
+  letter-spacing: -0.025em;
+  line-height: 1.04;
 }
 .hero__title em {
   font-style: italic;
@@ -279,12 +274,18 @@
 .hero__ticks svg { color: var(--gold-400); }
 
 .hero__card {
-  background: rgba(255, 255, 255, 0.05);
+  position: relative;
+  background: rgba(255, 255, 255, 0.035);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-lg);
-  padding: 30px;
-  backdrop-filter: blur(8px);
-  box-shadow: var(--shadow-lg);
+  padding: 32px;
+}
+.hero__card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 32px; right: 32px;
+  height: 2px;
+  background: var(--gold-400);
 }
 .hero__card-kicker {
   font-size: 0.74rem;
@@ -1093,7 +1094,8 @@
   gap: 22px;
   width: max-content;
   padding: 8px 11px;
-  animation: testi-scroll 56s linear infinite;
+  animation: testi-scroll 38s linear infinite;
+  will-change: transform;
 }
 .testi-marquee:hover .testi-track { animation-play-state: paused; }
 @keyframes testi-scroll {
@@ -1745,4 +1747,80 @@
   .svc-cat__head { flex-direction: column; gap: 16px; }
   .opening { flex-direction: column; align-items: flex-start; gap: 18px; }
   .objective { padding: 36px 24px; }
+}
+
+/* ============================================================
+   EDITORIAL REFINEMENT PASS
+   Restrained, premium feel: hairline borders, subtle hover (no bouncy
+   lift), tighter geometry. Placed last so it refines earlier card rules.
+   ============================================================ */
+
+/* Eyebrow → editorial overline */
+.eyebrow {
+  font-size: 0.74rem;
+  letter-spacing: 0.22em;
+}
+.eyebrow::before { width: 32px; }
+
+/* Hairline borders on light-surface cards */
+.service-card,
+.svc-item,
+.process-card,
+.industry-chip,
+.perk-card,
+.kb-card,
+.kb-list__item,
+.kb-calc-item,
+.kb-bulletin,
+.link-card,
+.duedate-card,
+.opening,
+.about-intro__aside,
+.contact-form-wrap,
+.team-card,
+.leader-row {
+  border-color: var(--hairline);
+}
+
+/* Unify hover: small 2px nudge + hairline → accent border, restrained shadow.
+   No large translateY lift (a common AI/template tell). */
+.service-card:hover,
+.svc-item:hover,
+.industry-chip:hover,
+.perk-card:hover,
+.kb-card:hover,
+.kb-list__item:hover,
+.link-card:hover,
+.duedate-card:hover,
+.opening:hover,
+.team-card:hover,
+.leader-row:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--gold-400);
+}
+
+/* Service icon tiles: lighter, squarer, less "gradient chip" sameness */
+.service-card__icon,
+.svc-cat__icon,
+.kb-card__icon,
+.contact-info__icon,
+.service-row__icon {
+  border-radius: var(--radius-sm);
+}
+
+/* Process numbers: editorial oversized index */
+.process-card__n {
+  font-size: 3.2rem;
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+/* Section titles: tighter editorial tracking */
+.section-title,
+.svc-cat__title,
+.kb-panel__title,
+.cta-band__title,
+.page-hero__title {
+  letter-spacing: -0.02em;
 }

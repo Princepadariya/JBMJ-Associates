@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# UI/UX Pro Max skills (local only — not pushed to GitHub)
+.claude/skills/

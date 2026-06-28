@@ -25,11 +25,6 @@ export default function Team() {
               </div>
             ))}
           </div>
-
-          <p className="team-note reveal">
-            Photographs of our team members will be added soon. The cards above
-            include a placeholder for each professional’s photo.
-          </p>
         </div>
       </section>
 
