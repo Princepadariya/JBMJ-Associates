@@ -56,7 +56,15 @@ export default function Footer() {
         <div className="footer__col">
           <h4 className="footer__head">Get in touch</h4>
           <ul className="footer__contact">
-            <li><FiMapPin /><span>{firm.address}</span></li>
+            {firm.offices.map((o) => (
+              <li key={o.city}>
+                <FiMapPin />
+                <span>
+                  <strong className="footer__office">{o.city} Office</strong>
+                  {o.lines}
+                </span>
+              </li>
+            ))}
             <li><FiPhone /><a href={firm.phoneHref}>{firm.phone}</a></li>
             <li><FiMail /><a href={firm.emailHref}>{firm.email}</a></li>
             <li><FiClock /><span>{firm.hours}</span></li>

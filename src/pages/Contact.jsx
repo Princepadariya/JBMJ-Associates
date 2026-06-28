@@ -43,13 +43,15 @@ export default function Contact() {
             </p>
 
             <ul className="contact-info__list">
-              <li>
-                <span className="contact-info__icon"><FiMapPin /></span>
-                <div>
-                  <strong>Office</strong>
-                  <span>{firm.address}</span>
-                </div>
-              </li>
+              {firm.offices.map((o) => (
+                <li key={o.city}>
+                  <span className="contact-info__icon"><FiMapPin /></span>
+                  <div>
+                    <strong>{o.city} Office</strong>
+                    <span>{o.lines}</span>
+                  </div>
+                </li>
+              ))}
               <li>
                 <span className="contact-info__icon"><FiPhone /></span>
                 <div>
@@ -72,10 +74,6 @@ export default function Contact() {
                 </div>
               </li>
             </ul>
-
-            <div className="contact-info__note">
-              Update these details in <code>src/data/firm.js</code>.
-            </div>
           </aside>
 
           {/* Form column */}
