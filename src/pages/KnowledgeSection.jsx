@@ -14,7 +14,6 @@ import {
   actGroups,
   ruleGroups,
   formGroups,
-  calculatorList,
   dueDateGroups,
 } from '../data/knowledge'
 import { keySectionGroups } from '../data/keySections'
@@ -132,27 +131,7 @@ export default function KnowledgeSection() {
           <KnowledgeNav />
 
           <div className="kb-content">
-            {section === 'calculators' && (
-              <>
-                <Calculators />
-                <div className="kb-more">
-                  <h3 className="kb-group__title">More calculators</h3>
-                  <div className="kb-list">
-                    {calculatorList.map((c) => (
-                      <div key={c.id} className={`kb-calc-item ${c.live ? 'is-live' : ''}`}>
-                        <div>
-                          <h4>{c.title}</h4>
-                          <p>{c.desc}</p>
-                        </div>
-                        <span className="kb-calc-item__badge">
-                          {c.live ? <><FiCheckCircle /> Live</> : 'On request'}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </>
-            )}
+            {section === 'calculators' && <Calculators />}
 
             {section === 'rate-card' && <RateCard />}
 
@@ -235,8 +214,8 @@ export default function KnowledgeSection() {
             )}
 
             {section === 'links' && <GroupedLinks groups={linkGroups} itemsKey="links" withDesc />}
-            {section === 'acts' && <GroupedLinks groups={actGroups} />}
-            {section === 'rules' && <GroupedLinks groups={ruleGroups} />}
+            {section === 'acts' && <GroupedLinks groups={actGroups} withDesc />}
+            {section === 'rules' && <GroupedLinks groups={ruleGroups} withDesc />}
             {section === 'forms' && <GroupedLinks groups={formGroups} withDesc />}
           </div>
 

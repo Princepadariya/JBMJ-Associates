@@ -155,15 +155,19 @@
   position: fixed;
   inset: 0 0 0 auto;
   width: min(86vw, 360px);
+  height: 100%;
   background: var(--navy-800);
   transform: translateX(100%);
   transition: transform 0.4s var(--ease);
-  padding: 104px 28px 28px;
+  padding: 104px 28px 40px;
   display: flex;
   flex-direction: column;
   gap: 8px;
   box-shadow: var(--shadow-lg);
   z-index: 99;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 .nav__drawer.is-open { transform: translateX(0); }
 .nav__drawer nav { display: flex; flex-direction: column; }

@@ -13,6 +13,8 @@ import {
   FiBriefcase,
   FiActivity,
   FiAlertCircle,
+  FiCalendar,
+  FiScissors,
 } from 'react-icons/fi'
 
 const inr = (n) =>
@@ -47,7 +49,7 @@ function GstCalculator() {
         <label className="calc__field">
           GST Rate
           <select value={rate} onChange={(e) => setRate(e.target.value)}>
-            {[0, 3, 5, 12, 18, 28].map((r) => (
+            {[0, 3, 5, 18, 40].map((r) => (
               <option key={r} value={r}>{r}%</option>
             ))}
           </select>
@@ -612,6 +614,98 @@ function TaxInterestCalculator() {
   )
 }
 
+/* ---------------- Advance Tax Calculator ---------------- */
+function AdvanceTaxCalculator() {
+  const [tax, setTax] = useState(100000)
+
+  const schedule = useMemo(() => {
+    const t = Number(tax) || 0
+    return [
+      { due: 'By 15 Jun', cum: 0.15 },
+      { due: 'By 15 Sep', cum: 0.45 },
+      { due: 'By 15 Dec', cum: 0.75 },
+      { due: 'By 15 Mar', cum: 1.0 },
+    ].map((s) => ({ ...s, amt: t * s.cum }))
+  }, [tax])
+
+  return (
+    <div className="calc">
+      <div className="calc__fields">
+        <label className="calc__field">
+          Estimated tax for the year, after TDS (₹)
+          <input type="number" min="0" value={tax} onChange={(e) => setTax(e.target.value)} />
+        </label>
+        <div className="calc__field calc__field--note">
+          Basis
+          <span className="calc__hint">Advance tax applies if liability ≥ ₹10,000. Cumulative: 15% / 45% / 75% / 100%.</span>
+        </div>
+      </div>
+      <div className="calc__results">
+        {schedule.map((s, i) => (
+          <div key={i} className={`calc__result ${i === 3 ? 'calc__result--total' : ''}`}>
+            <span>{s.due} ({Math.round(s.cum * 100)}%)</span>
+            <strong>{inr(s.amt)}</strong>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/* ---------------- TDS Calculator ---------------- */
+const TDS_OPTS = [
+  { label: '194C — Contractor (Individual / HUF)', rate: 1 },
+  { label: '194C — Contractor (Others)', rate: 2 },
+  { label: '194J — Professional fees', rate: 10 },
+  { label: '194J — Technical services', rate: 2 },
+  { label: '194I — Rent (land / building)', rate: 10 },
+  { label: '194I — Rent (plant & machinery)', rate: 2 },
+  { label: '194H — Commission / brokerage', rate: 2 },
+  { label: '194A — Interest (other than securities)', rate: 10 },
+  { label: '194Q — Purchase of goods', rate: 0.1 },
+  { label: '194T — Payments to partners', rate: 10 },
+]
+
+function TdsCalculator() {
+  const [amount, setAmount] = useState(100000)
+  const [idx, setIdx] = useState(0)
+
+  const { rate, tds, net } = useMemo(() => {
+    const a = Number(amount) || 0
+    const r = TDS_OPTS[idx].rate
+    const t = (a * r) / 100
+    return { rate: r, tds: t, net: a - t }
+  }, [amount, idx])
+
+  return (
+    <div className="calc">
+      <div className="calc__fields">
+        <label className="calc__field">
+          Payment amount (₹)
+          <input type="number" min="0" value={amount} onChange={(e) => setAmount(e.target.value)} />
+        </label>
+        <label className="calc__field">
+          Nature of payment (section)
+          <select value={idx} onChange={(e) => setIdx(Number(e.target.value))}>
+            {TDS_OPTS.map((o, i) => (
+              <option key={i} value={i}>{o.label}</option>
+            ))}
+          </select>
+        </label>
+        <div className="calc__field calc__field--note">
+          Basis
+          <span className="calc__hint">Resident payees, above the relevant threshold. Rates are indicative.</span>
+        </div>
+      </div>
+      <div className="calc__results">
+        <div className="calc__result"><span>TDS rate</span><strong>{rate}%</strong></div>
+        <div className="calc__result calc__result--total"><span>TDS to deduct</span><strong>{inr(tds)}</strong></div>
+        <div className="calc__result"><span>Net payable</span><strong>{inr(net)}</strong></div>
+      </div>
+    </div>
+  )
+}
+
 const CALCS = [
   { id: 'gst', label: 'GST', icon: FiPercent, Comp: GstCalculator },
   { id: 'emi', label: 'EMI', icon: FiHome, Comp: EmiCalculator },
@@ -626,6 +720,8 @@ const CALCS = [
   { id: 'msme-interest', label: 'MSME Interest', icon: FiBriefcase, Comp: MsmeInterestCalculator },
   { id: 'gst-interest', label: 'GST Interest', icon: FiActivity, Comp: GstInterestCalculator },
   { id: 'tax-interest', label: 'Tax Interest', icon: FiAlertCircle, Comp: TaxInterestCalculator },
+  { id: 'advance-tax', label: 'Advance Tax', icon: FiCalendar, Comp: AdvanceTaxCalculator },
+  { id: 'tds', label: 'TDS', icon: FiScissors, Comp: TdsCalculator },
 ]
 
 export default function Calculators() {

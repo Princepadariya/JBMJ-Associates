@@ -8,7 +8,7 @@ export const rateCardTables = [
   {
     id: 'tds',
     label: 'TDS Rates',
-    note: 'Resident payees. Rates are indicative; thresholds, payee status and surcharge/cess can change the effective rate.',
+    note: 'Resident payees, FY 2025-26 onwards. Rates are indicative; thresholds, payee status and surcharge/cess can change the effective rate.',
     columns: ['Section', 'Nature of payment', 'Rate'],
     rows: [
       ['192', 'Salary', 'Slab rate'],
@@ -20,26 +20,26 @@ export const rateCardTables = [
       ['194J', 'Professional / technical fees', '10% · 2% (technical)'],
       ['194Q', 'Purchase of goods', '0.1%'],
       ['194O', 'E-commerce operator', '0.1%'],
-      ['206C(1H)', 'TCS on sale of goods', '0.1%'],
+      ['194T', 'Payments to partners (salary, interest, etc.)', '10%'],
     ],
   },
   {
     id: 'gst',
     label: 'GST Slabs',
-    note: 'Indicative slabs. The exact rate depends on the HSN/SAC classification of the specific good or service.',
+    note: 'GST 2.0 (effective 22 Sep 2025): the 12% and 28% slabs were merged into 5% and 18%, with a new 40% rate for sin & luxury goods. Special rates (e.g. 3% on gold, 0.25% on rough diamonds) still apply. Exact rate depends on HSN/SAC classification.',
     columns: ['Rate', 'Typically applies to'],
     rows: [
       ['0% / Exempt', 'Essential food grains, fresh produce, healthcare, education'],
-      ['5%', 'Mass-consumption items, transport, small restaurants'],
-      ['12%', 'Processed foods, business-class travel, certain goods'],
-      ['18%', 'Most goods & services (standard rate)'],
-      ['28%', 'Luxury & “sin” goods — cars, tobacco, aerated drinks (often + cess)'],
+      ['3%', 'Gold, silver and jewellery'],
+      ['5%', 'Most daily-use goods, packaged food, transport, small restaurants'],
+      ['18%', 'Standard rate — most goods & services, electronics, small cars'],
+      ['40%', 'Sin & luxury goods — tobacco, pan masala, aerated drinks, luxury cars'],
     ],
   },
   {
     id: 'income-tax',
     label: 'Income Tax Slabs',
-    note: 'New regime (default). Indicative — standard deduction of ₹75,000 for salaried; rebate u/s 87A makes tax nil up to the prescribed taxable income. Old regime slabs differ.',
+    note: 'New regime (default), FY 2026-27. Indicative — standard deduction of ₹75,000 for salaried; rebate makes tax nil for taxable income up to ₹12,00,000. Old regime slabs differ.',
     columns: ['Taxable income', 'Rate'],
     rows: [
       ['Up to ₹4,00,000', 'Nil'],
