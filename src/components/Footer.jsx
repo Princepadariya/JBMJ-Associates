@@ -92,6 +92,13 @@ export default function Footer() {
         This website is for informational purposes only and does not constitute
         advertisement or solicitation, in accordance with ICAI guidelines.
       </p>
+
+      <p className="footer__credit">
+        Made with <span className="footer__heart" aria-hidden="true">❤</span> by{' '}
+        <a href="https://codelixitsolutions.com" target="_blank" rel="noopener noreferrer">
+          Codelix
+        </a>
+      </p>
     </footer>
   )
 }

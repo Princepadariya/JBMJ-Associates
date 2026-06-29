@@ -1075,6 +1075,20 @@
   font-size: 0.78rem;
   color: rgba(255, 255, 255, 0.45);
 }
+.footer__credit {
+  margin: 0;
+  padding: 0 24px 22px;
+  text-align: center;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+.footer__heart { color: #e0455e; }
+.footer__credit a {
+  color: #fff;
+  font-weight: 600;
+  transition: color 0.2s var(--ease);
+}
+.footer__credit a:hover { color: var(--gold-400); }
 
 /* ===================== LEGAL PAGE ===================== */
 .legal { max-width: 800px; }
