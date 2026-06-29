@@ -1,9 +1,13 @@
+import { useState } from 'react'
 import { useParams, Navigate, Link } from 'react-router-dom'
-import { FiArrowUpRight, FiArrowRight, FiCheckCircle } from 'react-icons/fi'
+import { FiArrowUpRight, FiArrowRight, FiCheckCircle, FiDownload, FiMail } from 'react-icons/fi'
 import useReveal from '../hooks/useReveal'
 import PageHero from '../components/PageHero'
 import KnowledgeNav, { KB_SECTIONS } from '../components/KnowledgeNav'
 import Calculators from '../components/Calculators'
+import RateCard from '../components/RateCard'
+import ItrSelector from '../components/ItrSelector'
+import FinancialsGuide from '../components/FinancialsGuide'
 import {
   bulletins,
   linkGroups,
@@ -13,15 +17,33 @@ import {
   calculatorList,
   dueDateGroups,
 } from '../data/knowledge'
+import { keySectionGroups } from '../data/keySections'
+import { firm } from '../data/firm'
 
 const META = {
   calculators: {
     title: 'Financial Calculators',
     lead: 'Quick, interactive estimates for GST, loan EMIs, income tax, HRA and gratuity.',
   },
+  'rate-card': {
+    title: 'Rate Card',
+    lead: 'TDS rates, GST slabs, income-tax slabs, ROC fees and more — all in one place.',
+  },
   'due-dates': {
     title: 'Compliance Calendar',
     lead: 'Key recurring statutory due dates for Income Tax, TDS, GST, ROC and payroll.',
+  },
+  'itr-selector': {
+    title: 'Which ITR applies to you?',
+    lead: 'Answer a few quick questions and we’ll point you to the right income-tax return form.',
+  },
+  'key-sections': {
+    title: 'Key Sections — in plain English',
+    lead: 'The most-referenced sections of the Income Tax, GST and Companies Acts, explained simply.',
+  },
+  'read-financials': {
+    title: 'How to read your financial statements',
+    lead: 'A plain-language guide to your P&L, balance sheet and cash flow — written for business owners.',
   },
   bulletins: {
     title: 'Bulletins & Updates',
@@ -75,6 +97,21 @@ function GroupedLinks({ groups, itemsKey = 'items', withDesc }) {
 export default function KnowledgeSection() {
   const { section } = useParams()
   useReveal([section])
+  const [subStatus, setSubStatus] = useState('idle') // idle | sent
+
+  const subscribe = async (e) => {
+    e.preventDefault()
+    const email = new FormData(e.target).get('email')
+    try {
+      await fetch(`https://formsubmit.co/ajax/${firm.email}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ email, _subject: 'Compliance calendar subscription — JBMJ' }),
+      })
+    } catch { /* still show confirmation */ }
+    e.target.reset()
+    setSubStatus('sent')
+  }
 
   const valid = KB_SECTIONS.some((s) => s.id === section)
   if (!valid) return <Navigate to="/knowledge" replace />
@@ -117,6 +154,33 @@ export default function KnowledgeSection() {
               </>
             )}
 
+            {section === 'rate-card' && <RateCard />}
+
+            {section === 'itr-selector' && <ItrSelector />}
+
+            {section === 'read-financials' && <FinancialsGuide />}
+
+            {section === 'key-sections' && (
+              <div className="kb-groups">
+                {keySectionGroups.map((g) => (
+                  <div key={g.group} className="kb-group reveal">
+                    <h3 className="kb-group__title">{g.group}</h3>
+                    <div className="keysec-list">
+                      {g.items.map((s) => (
+                        <article key={s.section} className="keysec">
+                          <span className="keysec__no">{s.section}</span>
+                          <div className="keysec__body">
+                            <h4>{s.title}</h4>
+                            <p>{s.plain}</p>
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
             {section === 'bulletins' && (
               <div className="kb-bulletins">
                 {bulletins.map((b, i) => (
@@ -134,6 +198,22 @@ export default function KnowledgeSection() {
 
             {section === 'due-dates' && (
               <div className="kb-groups">
+                <div className="duedate-actions reveal">
+                  <button className="btn btn--navy" onClick={() => window.print()}>
+                    <FiDownload /> Download / Print calendar
+                  </button>
+                  {subStatus === 'sent' ? (
+                    <p className="duedate-sub__done">
+                      <FiCheckCircle /> Thanks — we’ll email you the calendar.
+                    </p>
+                  ) : (
+                    <form className="duedate-sub" onSubmit={subscribe}>
+                      <FiMail />
+                      <input type="email" name="email" required placeholder="Email me the calendar" />
+                      <button type="submit" className="btn btn--gold">Subscribe</button>
+                    </form>
+                  )}
+                </div>
                 {dueDateGroups.map((g) => (
                   <div key={g.group} className="kb-group reveal">
                     <h3 className="kb-group__title">{g.group}</h3>

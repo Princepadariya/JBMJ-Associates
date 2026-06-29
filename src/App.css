@@ -1580,6 +1580,26 @@
 .svc-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 .svc-item__title { font-size: 1.08rem; }
 .svc-item__desc { margin-top: 8px; color: var(--muted); font-size: 0.9rem; }
+.svc-item__deliverables {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+.svc-item__deliverables li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.svc-item__deliverables li:last-child { margin-bottom: 0; }
+.svc-item__check {
+  color: var(--gold-500);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
 .svc-cat__more {
   display: inline-flex;
   align-items: center;
@@ -1783,6 +1803,170 @@
 }
 .duedate-row__body h4 { font-size: 1.02rem; margin-top: 7px; }
 .duedate-row__body p { font-size: 0.86rem; color: var(--muted); margin-top: 4px; }
+
+/* Due-dates download + subscribe bar */
+.duedate-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  margin-bottom: 30px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.duedate-sub { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 260px; }
+.duedate-sub > svg { color: var(--gold-500); flex: none; }
+.duedate-sub input {
+  flex: 1;
+  font-family: inherit;
+  font-size: 0.92rem;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+.duedate-sub input:focus { outline: none; border-color: var(--gold-500); box-shadow: 0 0 0 3px rgba(29,78,137,0.16); }
+.duedate-sub .btn { flex: none; }
+.duedate-sub__done { display: inline-flex; align-items: center; gap: 8px; color: var(--gold-500); font-weight: 600; font-size: 0.92rem; }
+
+/* ===================== RATE CARD ===================== */
+.ratecard__switch { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.ratecard__tab {
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  font-size: 0.88rem; font-weight: 600;
+  color: var(--navy-700);
+  cursor: pointer;
+  transition: all 0.18s var(--ease);
+}
+.ratecard__tab:hover { color: var(--gold-500); }
+.ratecard__tab.is-active { background: var(--navy-800); color: #fff; border-color: var(--navy-800); }
+.ratecard__note { font-size: 0.84rem; color: var(--muted-2); font-style: italic; margin-bottom: 16px; }
+.ratecard__table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+.ratecard__table { width: 100%; border-collapse: collapse; min-width: 480px; }
+.ratecard__table th {
+  text-align: left;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--navy-800);
+  padding: 13px 18px;
+  font-weight: 600;
+}
+.ratecard__table td { padding: 13px 18px; font-size: 0.92rem; color: var(--ink); border-top: 1px solid var(--line); }
+.ratecard__table tr:nth-child(even) td { background: var(--cream); }
+.ratecard__td--key { font-weight: 600; color: var(--navy-800); white-space: nowrap; }
+
+/* ===================== ITR SELECTOR ===================== */
+.itr {
+  max-width: 640px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+}
+.itr__step { font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-500); font-weight: 600; }
+.itr__q { font-size: 1.4rem; margin-top: 10px; }
+.itr__hint { margin-top: 8px; color: var(--muted); font-size: 0.9rem; }
+.itr__options { margin-top: 22px; display: flex; flex-direction: column; gap: 11px; }
+.itr__option {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: 100%; text-align: left;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  font-size: 0.95rem; font-weight: 500; color: var(--navy-800);
+  cursor: pointer;
+  transition: border-color 0.18s var(--ease), background 0.18s var(--ease), transform 0.18s var(--ease);
+}
+.itr__option svg { color: var(--gold-500); flex: none; transition: transform 0.18s var(--ease); }
+.itr__option:hover { border-color: var(--gold-500); background: var(--cream); transform: translateX(2px); }
+.itr__option:hover svg { transform: translateX(3px); }
+.itr__restart {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent; border: 0; cursor: pointer;
+  color: var(--muted); font-size: 0.82rem; font-weight: 600; margin-bottom: 14px;
+}
+.itr__restart:hover { color: var(--navy-800); }
+.itr__result { text-align: center; }
+.itr__result-icon { font-size: 2.6rem; color: var(--gold-500); }
+.itr__result-label { display: block; margin-top: 12px; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-2); }
+.itr__result-form { font-size: 2rem; margin-top: 4px; color: var(--navy-800); }
+.itr__result-reason { margin-top: 12px; color: var(--muted); max-width: 46ch; margin-left: auto; margin-right: auto; }
+.itr__result-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 24px; }
+
+/* ===================== KEY SECTIONS ===================== */
+.keysec-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.keysec {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease), border-color 0.22s var(--ease);
+}
+.keysec:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: transparent; }
+.keysec__no {
+  flex: none;
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: var(--gold-500);
+  background: rgba(29, 78, 137, 0.1);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+.keysec__body h4 { font-size: 1rem; }
+.keysec__body p { font-size: 0.88rem; color: var(--muted); margin-top: 5px; }
+
+/* ===================== FINANCIALS GUIDE ===================== */
+.finguide { max-width: 760px; }
+.finguide__lead { font-size: 1.08rem; color: var(--muted); line-height: 1.75; }
+.finguide__block {
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.finguide__head { display: flex; gap: 15px; align-items: flex-start; margin-bottom: 14px; }
+.finguide__icon {
+  display: inline-grid; place-items: center;
+  width: 48px; height: 48px; flex: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--navy-700), var(--navy-800));
+  color: var(--gold-400);
+  font-size: 1.3rem;
+}
+.finguide__head h2 { font-size: 1.35rem; }
+.finguide__sub { color: var(--gold-500); font-weight: 600; font-size: 0.92rem; margin-top: 2px; }
+.finguide__block > p { color: var(--muted); margin-top: 12px; line-height: 1.75; }
+.finguide__sample {
+  margin: 20px 0;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+}
+.finguide__sample--two { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.finguide__col { display: block; font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted-2); font-weight: 600; margin-bottom: 8px; }
+.finguide__row { display: flex; justify-content: space-between; gap: 14px; padding: 7px 0; font-size: 0.92rem; color: var(--navy-700); }
+.finguide__row--sub { color: var(--muted); font-size: 0.86rem; }
+.finguide__row--mid { border-top: 1px solid var(--line); font-weight: 600; }
+.finguide__row--total { border-top: 2px solid var(--navy-700); font-weight: 700; color: var(--navy-800); margin-top: 4px; }
+.finguide__tip {
+  background: rgba(29, 78, 137, 0.06);
+  border-left: 3px solid var(--gold-500);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  color: var(--navy-700);
+}
+.finguide__close { margin-top: 36px; font-size: 1.05rem; color: var(--navy-700); line-height: 1.7; }
 
 /* ===================== CALCULATORS (suite layout) ===================== */
 .calc-suite {
@@ -2050,6 +2234,8 @@
   .kb-cards { grid-template-columns: 1fr; }
   .kb-more .kb-list { grid-template-columns: 1fr; }
   .duedate-list { grid-template-columns: 1fr; }
+  .keysec-list { grid-template-columns: 1fr; }
+  .finguide__sample--two { grid-template-columns: 1fr; gap: 14px; }
   .ind-grid { grid-template-columns: 1fr; }
   .svc-cat__items { grid-template-columns: 1fr; }
   .svc-cat__head { flex-direction: column; gap: 16px; }
@@ -2153,4 +2339,18 @@
 .cta-band__title,
 .page-hero__title {
   letter-spacing: -0.02em;
+}
+
+/* ===================== PRINT (compliance calendar download) ===================== */
+@media print {
+  .nav, .footer, .fab, .kb-tabs, .duedate-actions, .cta-band,
+  .page-hero__glow, .skip-link { display: none !important; }
+  .page-hero { background: #fff !important; color: #000 !important; padding: 20px 0 0 !important; }
+  .page-hero__title, .crumb, .crumb a, .crumb span, .eyebrow { color: #000 !important; }
+  .section { padding: 12px 0 !important; }
+  .duedate-row { break-inside: avoid; border-color: #ccc !important; }
+  .duedate-row__date { background: #f0f0f0 !important; color: #000 !important; }
+  .duedate-row__tag { background: #f0f0f0 !important; color: #000 !important; }
+  .kb-group__title { color: #000 !important; }
+  body { background: #fff !important; }
 }

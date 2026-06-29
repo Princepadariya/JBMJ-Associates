@@ -38,15 +38,17 @@ export default function Industries() {
         </div>
       </section>
 
-      <section className="section why-sec section--tight">
-        <div className="container engage">
-          <SectionHeading
-            center
-            light
-            eyebrow="Don’t see your sector?"
-            title="We work with businesses of every kind"
-          />
-          <div className="engage__actions reveal">
+      <section className="cta-band">
+        <div className="container cta-band__inner reveal">
+          <div>
+            <span className="eyebrow">Don’t see your sector?</span>
+            <h2 className="cta-band__title">We work with businesses of every kind.</h2>
+            <p className="cta-band__text">
+              Whatever your industry, our advice is grounded in real compliance
+              and finance experience.
+            </p>
+          </div>
+          <div className="cta-band__actions">
             <Link to="/contact" className="btn btn--gold">
               Talk to us <FiArrowRight />
             </Link>

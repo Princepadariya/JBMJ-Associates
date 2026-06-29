@@ -6,7 +6,11 @@ import { KB_SECTIONS } from '../components/KnowledgeNav'
 
 const blurbs = {
   calculators: 'Interactive GST, EMI, income-tax, HRA and gratuity calculators.',
+  'rate-card': 'TDS, GST, income-tax, ROC and stamp-duty rates — all in one place.',
   'due-dates': 'Key recurring deadlines for Income Tax, TDS, GST, ROC and payroll.',
+  'itr-selector': 'Answer a few questions to find the right ITR form for you.',
+  'key-sections': 'Most-referenced Act sections explained in plain English.',
+  'read-financials': 'A plain-language guide to reading your financial statements.',
   bulletins: 'Timely notes and reminders on tax, GST and corporate compliance.',
   links: 'Quick access to official government and regulatory portals.',
   acts: 'Key legislation governing taxation and corporate law.',

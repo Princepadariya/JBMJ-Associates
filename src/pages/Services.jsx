@@ -51,15 +51,19 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="section why-sec section--tight">
-        <div className="container engage">
-          <SectionHeading
-            center
-            light
-            eyebrow="Not sure where to start?"
-            title="Tell us about your business — we’ll map the right engagement"
-          />
-          <div className="engage__actions reveal">
+      <section className="cta-band">
+        <div className="container cta-band__inner reveal">
+          <div>
+            <span className="eyebrow">Not sure where to start?</span>
+            <h2 className="cta-band__title">
+              Tell us about your business — we’ll map the right engagement.
+            </h2>
+            <p className="cta-band__text">
+              A short, confidential conversation is all it takes to scope the
+              support you need.
+            </p>
+          </div>
+          <div className="cta-band__actions">
             <Link to="/contact" className="btn btn--gold">
               Talk to a partner <FiArrowRight />
             </Link>

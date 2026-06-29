@@ -5,7 +5,11 @@ import Logo from './Logo'
 
 const knowledgeItems = [
   { to: '/knowledge/calculators', label: 'Calculators' },
+  { to: '/knowledge/rate-card', label: 'Rate Card' },
   { to: '/knowledge/due-dates', label: 'Due Dates' },
+  { to: '/knowledge/itr-selector', label: 'ITR Helper' },
+  { to: '/knowledge/key-sections', label: 'Key Sections' },
+  { to: '/knowledge/read-financials', label: 'Read Financials' },
   { to: '/knowledge/bulletins', label: 'Bulletins' },
   { to: '/knowledge/links', label: 'Links' },
   { to: '/knowledge/acts', label: 'Acts' },

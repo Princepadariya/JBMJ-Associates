@@ -44,6 +44,16 @@ export default function ServiceDetail() {
                 <article key={item.title} className="svc-item reveal">
                   <h3 className="svc-item__title">{item.title}</h3>
                   <p className="svc-item__desc">{item.desc}</p>
+                  
+                  {item.keyDeliverables && item.keyDeliverables.length > 0 && (
+                    <ul className="svc-item__deliverables">
+                      {item.keyDeliverables.map((del, i) => (
+                        <li key={i}>
+                          <FiCheck className="svc-item__check" /> {del}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </article>
               ))}
             </div>
