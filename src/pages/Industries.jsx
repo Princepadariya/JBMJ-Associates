@@ -22,8 +22,8 @@ export default function Industries() {
             {industries.map((ind) => {
               const Icon = ind.icon
               return (
-                <article key={ind.id} className="ind-card reveal">
-                  <span className="ind-card__icon"><Icon /></span>
+                <article key={ind.id} className="ind-card reveal" style={{ '--card-accent': ind.accent }}>
+                  <span className="ind-card__icon" style={{ background: `color-mix(in srgb, ${ind.accent} 12%, transparent)`, color: ind.accent }}><Icon /></span>
                   <h3 className="ind-card__title">{ind.label}</h3>
                   <p className="ind-card__desc">{ind.desc}</p>
                   <ul className="ind-card__list">

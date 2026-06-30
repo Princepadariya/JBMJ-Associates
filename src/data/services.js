@@ -1,8 +1,8 @@
 import {
-  FiCheckSquare,
-  FiFileText,
-  FiLayers,
-} from 'react-icons/fi'
+  LuShieldCheck,
+  LuCalculator,
+  LuBookOpenCheck,
+} from 'react-icons/lu'
 
 /*
   Services are grouped into the firm's three core categories.
@@ -11,7 +11,8 @@ import {
 export const serviceCategories = [
   {
     id: 'audit-assurance',
-    icon: FiCheckSquare,
+    icon: LuShieldCheck,
+    accent: '#2563eb', // Blue
     category: 'Audit & Assurance',
     summary:
       'Independent, risk-focused audits that give stakeholders genuine confidence in your numbers.',
@@ -58,7 +59,8 @@ export const serviceCategories = [
   },
   {
     id: 'taxation-matters',
-    icon: FiFileText,
+    icon: LuCalculator,
+    accent: '#0d9488', // Teal
     category: 'Taxation Matters',
     summary:
       'End-to-end direct and indirect tax compliance, planning and litigation support.',
@@ -115,7 +117,8 @@ export const serviceCategories = [
   },
   {
     id: 'accounting-other',
-    icon: FiLayers,
+    icon: LuBookOpenCheck,
+    accent: '#7c3aed', // Purple
     category: 'Accounting & Other Services',
     summary:
       'Reliable accounting, compliance and finance support that keeps your business running and growing.',

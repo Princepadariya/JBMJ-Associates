@@ -7,7 +7,16 @@ import {
   FiUsers,
   FiTrendingUp,
   FiClock,
+  FiMapPin,
+  FiLayers,
+  FiAward,
 } from 'react-icons/fi'
+import {
+  LuMapPin,
+  LuUsers,
+  LuLayers,
+  LuAward
+} from 'react-icons/lu'
 import useReveal from '../hooks/useReveal'
 import SectionHeading from '../components/SectionHeading'
 import TeamCard from '../components/TeamCard'
@@ -18,10 +27,10 @@ import { team } from '../data/team'
 import { industries } from '../data/industries'
 
 const stats = [
-  { value: '8+', label: 'Service verticals' },
-  { value: '100%', label: 'Compliance-first approach' },
-  { value: '4', label: 'Qualified professionals' },
-  { value: 'Rajkot', label: 'Rooted in Gujarat' },
+  { value: '15+', label: 'Industries Served' },
+  { value: '60+', label: 'Corporate Clients' },
+  { value: '120+', label: 'Filings & Audits' },
+  { value: '100%', label: 'Partner-Led Advisory' },
 ]
 
 const values = [
@@ -150,12 +159,12 @@ export default function Home() {
       </section>
 
       {/* ============== STATS ============== */}
-      <section className="stats-strip">
-        <div className="container stats-strip__grid">
-          {stats.map((s) => (
-            <div key={s.label} className="stats-strip__item reveal">
-              <span className="stats-strip__value">{s.value}</span>
-              <span className="stats-strip__label">{s.label}</span>
+      <section className="stats-clean-sec">
+        <div className="container stats-clean__grid">
+          {stats.map((s, i) => (
+            <div key={i} className="stats-clean__item reveal" style={{ transitionDelay: `${i * 100}ms` }}>
+              <span className="stats-clean__value">{s.value}</span>
+              <span className="stats-clean__label">{s.label}</span>
             </div>
           ))}
         </div>
@@ -210,6 +219,7 @@ export default function Home() {
         <div className="container">
           <div className="services-sec__head">
             <SectionHeading
+              index="01"
               eyebrow="What We Do"
               title="Comprehensive services for every stage of business"
               lead="From day-one incorporation to large-scale assurance and capital-market advisory — a single, dependable team for all your financial and compliance needs."
@@ -219,23 +229,29 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="services-grid services-grid--cats">
-            {serviceCategories.map((cat) => {
+          <div className="services-grid services-grid--cats-v2">
+            {serviceCategories.map((cat, i) => {
               const Icon = cat.icon
               return (
-                <article key={cat.id} className="service-card reveal">
-                  <span className="service-card__icon"><Icon /></span>
-                  <h3 className="service-card__title">{cat.category}</h3>
-                  <p className="service-card__summary">{cat.summary}</p>
-                  <ul className="service-card__points">
+                <Link to={`/services/${cat.id}`} key={cat.id} className="service-card-v2 reveal" style={{ '--card-accent': cat.accent }}>
+                  <div className="service-card-v2__accent" aria-hidden="true" />
+                  <div className="service-card-v2__top">
+                    <div className="service-card-v2__icon-wrap">
+                      <Icon />
+                    </div>
+                    <span className="service-card-v2__no">{String(i + 1).padStart(2, '0')}</span>
+                  </div>
+                  <h3 className="service-card-v2__title">{cat.category}</h3>
+                  <p className="service-card-v2__summary">{cat.summary}</p>
+                  <ul className="service-card-v2__points">
                     {cat.items.slice(0, 4).map((item) => (
                       <li key={item.title}><FiCheck /> {item.title}</li>
                     ))}
                   </ul>
-                  <Link to={`/services/${cat.id}`} className="service-card__link">
+                  <span className="service-card-v2__link">
                     Learn more <FiArrowUpRight />
-                  </Link>
-                </article>
+                  </span>
+                </Link>
               )
             })}
           </div>
@@ -243,21 +259,36 @@ export default function Home() {
       </section>
 
       {/* ============== INDUSTRIES ============== */}
-      <section className="section industries-sec">
+      <section className="section industries-sec-v2">
         <div className="container">
           <SectionHeading
             center
+            index="02"
             eyebrow="Industries We Serve"
             title="Sector experience across the board"
             lead="We understand that every industry has its own compliance rhythm. Our advice is shaped by the realities of your sector."
           />
-          <div className="industries-grid">
+          <div className="ind-v2-grid">
             {industries.map((ind) => {
               const Icon = ind.icon
               return (
-                <Link to="/industries" key={ind.label} className="industry-chip reveal">
-                  <span className="industry-chip__icon"><Icon /></span>
-                  <span>{ind.label}</span>
+                <Link
+                  to="/industries"
+                  key={ind.label}
+                  className="ind-v2-card reveal"
+                  style={{ '--card-accent': ind.accent }}
+                >
+                  <div className="ind-v2-card__accent" aria-hidden="true" />
+                  <div className="ind-v2-card__icon-wrap">
+                    <Icon />
+                  </div>
+                  <div className="ind-v2-card__body">
+                    <h3 className="ind-v2-card__title">{ind.label}</h3>
+                    <p className="ind-v2-card__desc">{ind.desc}</p>
+                  </div>
+                  <span className="ind-v2-card__arrow">
+                    <FiArrowUpRight />
+                  </span>
                 </Link>
               )
             })}
@@ -276,6 +307,7 @@ export default function Home() {
           <SectionHeading
             center
             light
+            index="03"
             eyebrow="Why JBMJ"
             title="The difference is in how we work"
             lead="Premium service isn’t about jargon — it’s about reliability, judgment and being genuinely invested in your outcome."
@@ -299,6 +331,7 @@ export default function Home() {
       <section className="section process-sec">
         <div className="container">
           <SectionHeading
+            index="04"
             eyebrow="Our Approach"
             title="A clear, four-step way of working"
             lead="No ambiguity, no surprises — just a structured engagement that keeps you informed and in control."
@@ -320,6 +353,7 @@ export default function Home() {
         <div className="container">
           <div className="services-sec__head">
             <SectionHeading
+              index="05"
               eyebrow="Our People"
               title="Meet the core team"
               lead="Qualified professionals who lead every engagement personally — combining technical depth with practical business sense."
@@ -344,6 +378,7 @@ export default function Home() {
           <SectionHeading
             center
             light
+            index="06"
             eyebrow="Client Voices"
             title="Trusted by businesses that value diligence"
             lead="Real results across audit, tax, funding and corporate compliance — here’s what working with JBMJ feels like."
@@ -357,6 +392,7 @@ export default function Home() {
         <div className="container faq-wrap">
           <SectionHeading
             center
+            index="07"
             eyebrow="FAQ"
             title="Frequently asked questions"
             lead="Quick answers to what clients ask us most. Need something specific? Just reach out."

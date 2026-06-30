@@ -21,12 +21,12 @@ export default function Services() {
           {serviceCategories.map((cat, i) => {
             const Icon = cat.icon
             return (
-              <div key={cat.id} className="svc-cat reveal" id={cat.id}>
+              <div key={cat.id} className="svc-cat reveal" id={cat.id} style={{ '--svc-accent': cat.accent }}>
                 <div className="svc-cat__head">
                   <span className="svc-cat__icon"><Icon /></span>
-                  <div>
+                  <div className="svc-cat__head-text">
                     <span className="svc-cat__kicker">
-                      Service Category {String(i + 1).padStart(2, '0')}
+                      {String(i + 1).padStart(2, '0')} — Service Category
                     </span>
                     <h2 className="svc-cat__title">{cat.category}</h2>
                     <p className="svc-cat__summary">{cat.summary}</p>
@@ -34,10 +34,17 @@ export default function Services() {
                 </div>
 
                 <div className="svc-cat__items">
-                  {cat.items.map((item) => (
+                  {cat.items.map((item, j) => (
                     <article key={item.title} className="svc-item">
                       <h3 className="svc-item__title">{item.title}</h3>
                       <p className="svc-item__desc">{item.desc}</p>
+                      {item.keyDeliverables && (
+                        <ul className="svc-item__deliverables">
+                          {item.keyDeliverables.slice(0, 3).map((d, k) => (
+                            <li key={k}>{d}</li>
+                          ))}
+                        </ul>
+                      )}
                     </article>
                   ))}
                 </div>
