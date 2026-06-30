@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {
   FiArrowRight,
@@ -18,6 +19,60 @@ import {
   LuAward
 } from 'react-icons/lu'
 import useReveal from '../hooks/useReveal'
+
+/* ── Animated stat counter ── */
+function StatItem({ value, label, index }) {
+  const numericPart = parseInt(value.replace(/\D/g, ''), 10)
+  const suffix = value.replace(/\d/g, '')
+  const [display, setDisplay] = useState('0' + suffix)
+  const ref = useRef(null)
+  const done = useRef(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting || done.current) return
+      done.current = true
+      const start = performance.now()
+      const dur = 1800
+      const run = (now) => {
+        const p = Math.min((now - start) / dur, 1)
+        const ease = 1 - Math.pow(1 - p, 3)
+        setDisplay(Math.round(ease * numericPart) + suffix)
+        if (p < 1) requestAnimationFrame(run)
+        else setDisplay(value)
+      }
+      requestAnimationFrame(run)
+    }, { threshold: 0.5 })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [value, numericPart, suffix])
+
+  return (
+    <div ref={ref} className="stats-clean__item reveal" style={{ transitionDelay: `${index * 100}ms` }}>
+      <span className="stats-clean__value">{display}</span>
+      <span className="stats-clean__label">{label}</span>
+    </div>
+  )
+}
+
+/* ── 3-D card tilt helpers ── */
+function handleTiltEnter(e) {
+  e.currentTarget.style.transition = 'box-shadow 0.4s cubic-bezier(0.22,1,0.36,1), border-color 0.4s cubic-bezier(0.22,1,0.36,1)'
+}
+function handleTilt(e) {
+  const el = e.currentTarget
+  const { left, top, width, height } = el.getBoundingClientRect()
+  const x = (e.clientX - left) / width - 0.5
+  const y = (e.clientY - top)  / height - 0.5
+  el.style.transform = `perspective(900px) rotateX(${-y * 9}deg) rotateY(${x * 9}deg) translateY(-10px) scale(1.02)`
+}
+function resetTilt(e) {
+  const el = e.currentTarget
+  el.style.transition = ''
+  el.style.transform = ''
+}
 import SectionHeading from '../components/SectionHeading'
 import TeamCard from '../components/TeamCard'
 import Faq from '../components/Faq'
@@ -72,6 +127,9 @@ export default function Home() {
       <section className="hero">
         <div className="hero__bg" aria-hidden="true">
           <span className="hero__grid" />
+          <div className="hero__orb hero__orb--1" />
+          <div className="hero__orb hero__orb--2" />
+          <div className="hero__orb hero__orb--3" />
         </div>
 
         <div className="container hero__inner">
@@ -162,10 +220,7 @@ export default function Home() {
       <section className="stats-clean-sec">
         <div className="container stats-clean__grid">
           {stats.map((s, i) => (
-            <div key={i} className="stats-clean__item reveal" style={{ transitionDelay: `${i * 100}ms` }}>
-              <span className="stats-clean__value">{s.value}</span>
-              <span className="stats-clean__label">{s.label}</span>
-            </div>
+            <StatItem key={i} value={s.value} label={s.label} index={i} />
           ))}
         </div>
       </section>
@@ -233,7 +288,15 @@ export default function Home() {
             {serviceCategories.map((cat, i) => {
               const Icon = cat.icon
               return (
-                <Link to={`/services/${cat.id}`} key={cat.id} className="service-card-v2 reveal" style={{ '--card-accent': cat.accent }}>
+                <Link
+                  to={`/services/${cat.id}`}
+                  key={cat.id}
+                  className="service-card-v2 reveal"
+                  style={{ '--card-accent': cat.accent }}
+                  onMouseEnter={handleTiltEnter}
+                  onMouseMove={handleTilt}
+                  onMouseLeave={resetTilt}
+                >
                   <div className="service-card-v2__accent" aria-hidden="true" />
                   <div className="service-card-v2__top">
                     <div className="service-card-v2__icon-wrap">
