@@ -2,6 +2,7 @@ import {
   LuShieldCheck,
   LuCalculator,
   LuBookOpenCheck,
+  LuTrendingUp,
 } from 'react-icons/lu'
 
 /*
@@ -189,6 +190,64 @@ export const serviceCategories = [
           'Turnover Certificates for tenders',
           'Foreign remittance (Form 15CB) certificates',
           'Utilization Certificates for subsidies'
+        ]
+      },
+    ],
+  },
+  {
+    id: 'ipo-compliance',
+    icon: LuTrendingUp,
+    accent: '#0891b2', // Cyan
+    category: 'ROC & SEBI IPO Compliance Advisory',
+    summary:
+      'End-to-end compliance advisory for SME and Main Board IPOs, from pre-IPO structuring to post-listing obligations.',
+    intro:
+      'Taking a company public requires meticulous regulatory compliance at every stage. We provide comprehensive advisory covering ROC structuring, SEBI regulatory requirements, DRHP / RHP preparation support, and ongoing post-listing compliance — ensuring your IPO journey is smooth, compliant and investor-ready.',
+    who: [
+      'Companies planning an SME or Main Board IPO listing',
+      'Promoters and founders undertaking pre-IPO restructuring',
+      'Businesses requiring SEBI regulatory advisory and liaison',
+      'Listed entities managing post-listing annual compliance',
+    ],
+    items: [
+      {
+        title: 'Pre-IPO Structuring & ROC Compliance',
+        desc: 'ROC filings and corporate restructuring to prepare the company for a public listing.',
+        keyDeliverables: [
+          'Capital restructuring and share allotment filings',
+          'Annual ROC compliance (AOC-4, MGT-7)',
+          'Director KYC and charge management',
+          'Pre-IPO due diligence support'
+        ]
+      },
+      {
+        title: 'DRHP / RHP Preparation Support',
+        desc: 'Assistance in drafting and reviewing the Draft Red Herring Prospectus and Red Herring Prospectus.',
+        keyDeliverables: [
+          'Financial information compilation and review',
+          'Restated financial statements preparation',
+          'Risk factor and MD&A drafting support',
+          'Coordination with merchant bankers and legal counsel'
+        ]
+      },
+      {
+        title: 'SEBI Regulatory Advisory',
+        desc: 'Guidance on SEBI ICDR regulations, listing obligations and compliance requirements.',
+        keyDeliverables: [
+          'SEBI ICDR compliance review',
+          'LODR (Listing Obligations) advisory',
+          'Liaison with SEBI and stock exchanges',
+          'Insider trading policy drafting'
+        ]
+      },
+      {
+        title: 'Post-Listing Compliance Management',
+        desc: 'Ongoing compliance support for listed entities under SEBI LODR Regulations.',
+        keyDeliverables: [
+          'Quarterly and annual financial result filings',
+          'Board and AGM secretarial compliance',
+          'Continuous disclosure obligations',
+          'Related party transaction reporting'
         ]
       },
     ],

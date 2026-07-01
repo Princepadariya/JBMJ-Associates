@@ -25,9 +25,6 @@ export default function Services() {
                 <div className="svc-cat__head">
                   <span className="svc-cat__icon"><Icon /></span>
                   <div className="svc-cat__head-text">
-                    <span className="svc-cat__kicker">
-                      {String(i + 1).padStart(2, '0')} — Service Category
-                    </span>
                     <h2 className="svc-cat__title">{cat.category}</h2>
                     <p className="svc-cat__summary">{cat.summary}</p>
                   </div>

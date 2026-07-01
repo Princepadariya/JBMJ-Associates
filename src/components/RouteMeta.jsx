@@ -7,8 +7,8 @@ import { useLocation } from 'react-router-dom'
 */
 const META = {
   '/': {
-    title: 'JBMJ & Associates | Chartered Accountants, Rajkot & Surat',
-    desc: 'A firm of Chartered Accountants & Company Secretaries delivering audit, taxation, GST, corporate law and growth advisory across Gujarat.',
+    title: 'JBMJ & Associates | Chartered Accountants & Company Secretaries',
+    desc: 'A firm of Chartered Accountants & Company Secretaries delivering audit, taxation, GST, corporate law, IPO compliance and growth advisory with precision and integrity.',
   },
   '/about': {
     title: 'About Us | JBMJ & Associates',
@@ -20,7 +20,7 @@ const META = {
   },
   '/services': {
     title: 'Services | JBMJ & Associates',
-    desc: 'Audit & assurance, direct & indirect taxation, GST, accounting, company incorporation, ROC compliance and project finance.',
+    desc: 'Audit & assurance, direct & indirect taxation, GST, accounting, company incorporation, ROC compliance, SEBI IPO advisory and project finance.',
   },
   '/industries': {
     title: 'Industries We Serve | JBMJ & Associates',

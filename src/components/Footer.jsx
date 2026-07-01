@@ -83,7 +83,7 @@ export default function Footer() {
           <p className="footer__bar-links">
             <Link to="/privacy">Privacy &amp; Disclaimer</Link>
             <span aria-hidden="true">·</span>
-            <span className="footer__disc">Chartered Accountants · {firm.city}</span>
+            <span className="footer__disc">Chartered Accountants</span>
           </p>
         </div>
       </div>

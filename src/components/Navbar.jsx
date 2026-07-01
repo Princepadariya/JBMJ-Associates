@@ -56,7 +56,7 @@ export default function Navbar() {
     <>
       <header className={`nav ${scrolled ? 'nav--scrolled' : ''} ${open ? 'nav--open' : ''}`}>
         <div className="container nav__inner">
-          <Logo variant={scrolled ? 'dark' : 'light'} />
+          <Logo variant="dark" />
 
           <nav className="nav__links" aria-label="Primary">
             {links.map((l) =>
@@ -104,7 +104,20 @@ export default function Navbar() {
         </div>
       </header>
 
+      <div
+        className={`nav__backdrop ${open ? 'is-open' : ''}`}
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+      />
+
       <div className={`nav__drawer ${open ? 'is-open' : ''}`}>
+        <button
+          className="nav__drawer-close"
+          aria-label="Close menu"
+          onClick={() => setOpen(false)}
+        >
+          <FiX />
+        </button>
         <nav aria-label="Mobile">
           {links.map((l) =>
             l.children ? (

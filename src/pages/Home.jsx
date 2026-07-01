@@ -96,7 +96,7 @@ import { industries } from '../data/industries'
 const stats = [
   { value: '15+', label: 'Industries Served' },
   { value: '60+', label: 'Corporate Clients' },
-  { value: '120+', label: 'Filings & Audits' },
+  { value: '5+', label: 'Cities Reached' },
   { value: '100%', label: 'Partner-Led Advisory' },
 ]
 
@@ -165,7 +165,7 @@ export default function Home() {
           <div className="hero__content">
             <div className="hero__overline">
               <span className="hero__overline-rule" />
-              Chartered Accountants &amp; Company Secretaries · Rajkot
+              Chartered Accountants &amp; Company Secretaries
             </div>
             <h1 className="hero__title">
               Clarity in numbers.
@@ -341,7 +341,6 @@ export default function Home() {
                     <div className="service-card-v2__icon-wrap">
                       <Icon />
                     </div>
-                    <span className="service-card-v2__no">{String(i + 1).padStart(2, '0')}</span>
                   </div>
                   <h3 className="service-card-v2__title">{cat.category}</h3>
                   <p className="service-card-v2__summary">{cat.summary}</p>
