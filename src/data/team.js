@@ -14,8 +14,8 @@ export const team = [
     id: 'mihir-busa',
     name: 'CA Mihir Busa',
     role: 'Founding & Designated Partner',
-    credential: 'Chartered Accountant',
-    photo: '/images/team/Mihir%20Busa.png', // public/images/team/Mihir Busa.png
+    credential: 'Taxation, Audit, IPO & Startup Consultancy',
+    photo: '/images/team/Mihir%20Busa.jpeg',
     bio: 'Mihir Busa is a qualified Chartered Accountant who leads the firm’s strategic direction with a strong focus on professional excellence, client-centric advisory, and practical business solutions.',
     extended:
       'His core expertise spans Assurance & Audits, CMA & Banking Reports, Income Tax & GST Advisory, Accounting, and Startup Funding Services. He plays a key role in the firm’s operations with structured compliance support, financial insight, and growth-oriented advisory.',
@@ -29,7 +29,7 @@ export const team = [
   },
   {
     id: 'jenil-jadafiya',
-    name: 'CA Jenil R. Jadafiya',
+    name: 'CA Jenil Jadafiya',
     role: 'Founding & Designated Partner',
     credential: 'Direct Tax, Audit & Risk Advisory',
     photo: '/images/team/Jenil%20R.%20Jadafiya.png', // public/images/team/Jenil R. Jadafiya.png

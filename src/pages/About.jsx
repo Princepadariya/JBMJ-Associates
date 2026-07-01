@@ -140,9 +140,13 @@ export default function About() {
           <div className="leaders-grid">
             {team.map((m) => (
               <div key={m.id} className="leader-row reveal">
-                <span className="leader-row__badge">
-                  {m.name.startsWith('CS') ? 'CS' : 'CA'}
-                </span>
+                <div className="leader-row__avatar">
+                  {m.photo ? (
+                    <img src={m.photo} alt={m.name} />
+                  ) : (
+                    <span>{m.name.startsWith('CS') ? 'CS' : 'CA'}</span>
+                  )}
+                </div>
                 <div className="leader-row__info">
                   <h3>{m.name}</h3>
                   <p className="leader-row__role">{m.role}</p>

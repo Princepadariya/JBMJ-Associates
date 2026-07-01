@@ -37,6 +37,7 @@ import './App.css'
 export default function App() {
   return (
     <>
+      <ScrollProgress />
       <a href="#main" className="skip-link">Skip to content</a>
       <ScrollToTop />
       <RouteMeta />

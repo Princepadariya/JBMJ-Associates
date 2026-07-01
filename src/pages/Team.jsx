@@ -5,21 +5,50 @@ import PageHero from '../components/PageHero'
 import TeamCard from '../components/TeamCard'
 import { team } from '../data/team'
 
+const founders = team.filter((m) => m.role === 'Founding & Designated Partner')
+const associates = team.filter((m) => m.role !== 'Founding & Designated Partner')
+
 export default function Team() {
   useReveal()
   return (
     <>
       <PageHero
         eyebrow="Our Team"
-        title="The people you’ll actually work with"
+        title="The people you'll actually work with"
         lead="A close-knit team of Chartered Accountants and Company Secretaries — each leading their domain and personally accountable for your engagement."
         crumb="Our Team"
       />
 
+      {/* ── Founding Partners ── */}
       <section className="section">
         <div className="container">
+          <div className="team-section-head reveal">
+            <h2 className="team-section-head__title">Founding Partners</h2>
+            <p className="team-section-head__lead">
+              Our founding partners bring together deep technical expertise and a shared commitment to delivering partner-led advisory across audit, taxation, and corporate law.
+            </p>
+          </div>
           <div className="team-grid team-grid--detailed">
-            {team.map((m) => (
+            {founders.map((m) => (
+              <div key={m.id} className="reveal">
+                <TeamCard member={m} detailed />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Associates & Specialists ── */}
+      <section className="section team-associates-sec">
+        <div className="container">
+          <div className="team-section-head reveal">
+            <h2 className="team-section-head__title">Associates &amp; Specialists</h2>
+            <p className="team-section-head__lead">
+              Domain specialists and professional associates who bring focused expertise in KPO, financial reporting, corporate law, secretarial compliance, and capital market advisory.
+            </p>
+          </div>
+          <div className="team-grid team-grid--detailed">
+            {associates.map((m) => (
               <div key={m.id} className="reveal">
                 <TeamCard member={m} detailed />
               </div>
@@ -31,7 +60,7 @@ export default function Team() {
       <section className="cta-band">
         <div className="container cta-band__inner reveal">
           <div>
-            <span className="eyebrow">Let’s connect</span>
+            <span className="eyebrow">Let's connect</span>
             <h2 className="cta-band__title">Speak directly with our partners.</h2>
             <p className="cta-band__text">
               No layers, no hand-offs — just qualified professionals who know your file.

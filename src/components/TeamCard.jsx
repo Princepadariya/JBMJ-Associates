@@ -34,7 +34,6 @@ export default function TeamCard({ member, detailed = false }) {
             <span className="team-card__ph-note">Photo coming soon</span>
           </div>
         )}
-        <span className="team-card__badge">{member.name.startsWith('CS') ? 'CS' : 'CA'}</span>
       </div>
 
       <div className="team-card__body">

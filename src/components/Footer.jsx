@@ -19,9 +19,9 @@ export default function Footer() {
         <div className="footer__brand">
           <Logo variant="light" />
           <p className="footer__about">
-            A Rajkot-based firm of Chartered Accountants delivering audit,
-            taxation, corporate law and advisory services with precision,
-            integrity and a genuinely personal approach.
+            A firm of Chartered Accountants delivering audit, taxation,
+            corporate law and advisory services with precision, integrity
+            and a genuinely personal approach.
           </p>
           <div className="footer__social">
             <a href={firm.social.linkedin} aria-label="LinkedIn"><FaLinkedinIn /></a>

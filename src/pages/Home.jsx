@@ -73,6 +73,18 @@ function resetTilt(e) {
   el.style.transition = ''
   el.style.transform = ''
 }
+
+/* ── Magnetic button helpers ── */
+function magneticMove(e) {
+  const el = e.currentTarget
+  const { left, top, width, height } = el.getBoundingClientRect()
+  const x = (e.clientX - left - width / 2) * 0.22
+  const y = (e.clientY - top - height / 2) * 0.22
+  el.style.transform = `translate(${x}px, ${y}px) scale(1.04)`
+}
+function magneticLeave(e) {
+  e.currentTarget.style.transform = ''
+}
 import SectionHeading from '../components/SectionHeading'
 import TeamCard from '../components/TeamCard'
 import Faq from '../components/Faq'
@@ -121,6 +133,23 @@ const steps = [
 export default function Home() {
   useReveal()
 
+  /* ── Cursor spotlight on why-sec ── */
+  useEffect(() => {
+    const sec = document.querySelector('.why-sec')
+    if (!sec) return
+    const onMove = (e) => {
+      const { left, top } = sec.getBoundingClientRect()
+      sec.style.setProperty('--cx', `${e.clientX - left}px`)
+      sec.style.setProperty('--cy', `${e.clientY - top}px`)
+    }
+    sec.setAttribute('data-spotlight', '1')
+    sec.addEventListener('mousemove', onMove)
+    return () => {
+      sec.removeEventListener('mousemove', onMove)
+      sec.removeAttribute('data-spotlight')
+    }
+  }, [])
+
   return (
     <>
       {/* ============== HERO ============== */}
@@ -151,10 +180,20 @@ export default function Home() {
             </p>
 
             <div className="hero__actions">
-              <Link to="/contact" className="btn btn--gold">
+              <Link
+                to="/contact"
+                className="btn btn--gold"
+                onMouseMove={magneticMove}
+                onMouseLeave={magneticLeave}
+              >
                 Book a Consultation <FiArrowRight />
               </Link>
-              <Link to="/services" className="btn btn--ghost">
+              <Link
+                to="/services"
+                className="btn btn--ghost"
+                onMouseMove={magneticMove}
+                onMouseLeave={magneticLeave}
+              >
                 Explore Services
               </Link>
             </div>
@@ -376,10 +415,10 @@ export default function Home() {
             lead="Premium service isn’t about jargon — it’s about reliability, judgment and being genuinely invested in your outcome."
           />
           <div className="why-grid">
-            {values.map((v) => {
+            {values.map((v, i) => {
               const Icon = v.icon
               return (
-                <div key={v.title} className="why-card reveal">
+                <div key={v.title} className="why-card reveal" style={{ transitionDelay: `${i * 120}ms` }}>
                   <span className="why-card__icon"><Icon /></span>
                   <h3>{v.title}</h3>
                   <p>{v.text}</p>
@@ -400,8 +439,8 @@ export default function Home() {
             lead="No ambiguity, no surprises — just a structured engagement that keeps you informed and in control."
           />
           <div className="process-grid">
-            {steps.map((s) => (
-              <div key={s.n} className="process-card reveal">
+            {steps.map((s, i) => (
+              <div key={s.n} className="process-card reveal" style={{ transitionDelay: `${i * 100}ms` }}>
                 <span className="process-card__n">{s.n}</span>
                 <h3>{s.title}</h3>
                 <p>{s.text}</p>
