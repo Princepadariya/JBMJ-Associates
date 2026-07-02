@@ -1,5 +1,5 @@
 /*
-  Team data for JBMJ & Associates.
+  Team data for JBMJ & Associates LLP.
   ----------------------------------------------------------------
   To add a photo for a member:
     1. Drop the image into  public/images/team/   (e.g. mihir-busa.jpg)
@@ -15,7 +15,7 @@ export const team = [
     name: 'CA Mihir Busa',
     role: 'Founding & Designated Partner',
     credential: 'Taxation, Audit, IPO & Startup Consultancy',
-    photo: '/images/team/Mihir%20Busa.jpeg',
+    photo: '/images/team/Mihir%20Busa.png',
     bio: 'Mihir Busa is a qualified Chartered Accountant who leads the firm’s strategic direction with a strong focus on professional excellence, client-centric advisory, and practical business solutions.',
     extended:
       'His core expertise spans Assurance & Audits, CMA & Banking Reports, Income Tax & GST Advisory, Accounting, and Startup Funding Services. He plays a key role in the firm’s operations with structured compliance support, financial insight, and growth-oriented advisory.',
@@ -66,7 +66,7 @@ export const team = [
     name: 'CS Hardik Thummar',
     role: 'Strategic Associate',
     credential: 'Corporate Law & Capital Market Advisory',
-    photo: '/images/team/Hardik%20Thummar.jpeg', // public/images/team/Hardik Thummar.jpeg
+    photo: '/images/team/Hardik%20Thummar.png', // public/images/team/Hardik Thummar.jpeg
     bio: 'Hardik Thummar is a qualified Company Secretary associated with the firm for corporate law advisory, transaction support, due diligence, and capital market assignments.',
     extended:
       'His engagements include SME IPO / Main Board IPO advisory and corporate governance matters, helping clients navigate complex corporate and capital-market requirements with confidence.',

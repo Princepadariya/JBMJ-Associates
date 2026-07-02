@@ -2,7 +2,7 @@
   Central place for firm contact details.
 */
 export const firm = {
-  name: 'JBMJ & Associates',
+  name: 'JBMJ & Associates LLP',
   tagline: 'Chartered Accountants',
   city: 'Rajkot, Gujarat',
   phone: '+91 90167 48980',

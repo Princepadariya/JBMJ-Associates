@@ -41,7 +41,7 @@ export default function About() {
       <PageHero
         eyebrow="About Us"
         title="A modern Chartered Accountancy & Company Secretary practice"
-        lead="JBMJ & Associates blends technical excellence with practical business understanding to serve businesses, founders and individuals across Rajkot and beyond."
+        lead="JBMJ & Associates LLP blends technical excellence with practical business understanding to serve businesses, founders and individuals across Rajkot and beyond."
         crumb="About"
       />
 
@@ -54,7 +54,7 @@ export default function About() {
               title="Compliance, assurance and advisory — under one trusted roof"
             />
             <p>
-              JBMJ &amp; Associates is a Rajkot-based firm bringing together
+              JBMJ &amp; Associates LLP is a Rajkot-based firm bringing together
               Chartered Accountants and Company Secretaries with complementary
               strengths across audit, taxation, corporate law and advisory. The
               firm was founded on a simple belief: that businesses deserve a
@@ -130,7 +130,7 @@ export default function About() {
           <div className="services-sec__head">
             <SectionHeading
               eyebrow="Leadership"
-              title="The professionals behind JBMJ & Associates"
+              title="The professionals behind JBMJ & Associates LLP"
               lead="A multi-disciplinary team of Chartered Accountants and Company Secretaries, each leading the areas they know best."
             />
             <Link to="/team" className="btn btn--outline services-sec__all">

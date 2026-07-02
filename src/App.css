@@ -1,5 +1,5 @@
 /* ============================================================
-   JBMJ & Associates — Component styles
+   JBMJ & Associates LLP — Component styles
    ============================================================ */
 
 /* ===================== LOGO ===================== */
@@ -850,9 +850,69 @@
 /* ===================== ABOUT PREVIEW ===================== */
 .about-pre__grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 64px;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
   align-items: center;
+}
+
+.about-pre__aside {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px 30px;
+}
+
+.about-pre__aside-kicker {
+  display: block;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold-500);
+  margin-bottom: 18px;
+}
+
+.about-pre__expertise {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.about-pre__expertise li {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 0.96rem;
+  font-weight: 500;
+  color: var(--navy-700);
+}
+
+.about-pre__expertise svg {
+  color: var(--gold-500);
+  flex: none;
+}
+
+.about-pre__aside-foot {
+  display: flex;
+  gap: 22px;
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.about-pre__aside-stat {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.about-pre__aside-stat strong {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  line-height: 1.1;
 }
 
 .about-pre__frame {
@@ -2034,11 +2094,12 @@
   place-items: center;
   width: 46px;
   height: 46px;
-  border-radius: 12px;
+  border-radius: 50%;
   flex: none;
-  background: linear-gradient(135deg, var(--navy-700), var(--navy-800));
-  color: var(--gold-400);
-  font-size: 1.15rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 1.25rem;
 }
 
 .contact-info__list strong {
@@ -2111,6 +2172,8 @@
   font-size: 0.95rem;
   font-weight: 400;
   padding: 12px 14px;
+  width: 100%;
+  box-sizing: border-box;
   border: 1px solid var(--line);
   border-radius: 10px;
   background: var(--cream);
@@ -2357,8 +2420,32 @@
   color: rgba(255, 255, 255, 0.55);
 }
 
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+
+  14% {
+    transform: scale(1.15);
+  }
+
+  28% {
+    transform: scale(1);
+  }
+
+  42% {
+    transform: scale(1.15);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+}
+
 .footer__heart {
   color: #e0455e;
+  display: inline-block;
+  animation: heartbeat 1.5s infinite;
 }
 
 .footer__credit a {
@@ -3217,6 +3304,14 @@
     gap: 36px;
   }
 
+  .contact-form-wrap {
+    padding: 24px;
+  }
+
+  .contact-form__row {
+    grid-template-columns: 1fr;
+  }
+
   .contact-maps {
     grid-template-columns: 1fr;
   }
@@ -3276,9 +3371,7 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .contact-form__row {
-    grid-template-columns: 1fr;
-  }
+
 
   .footer__grid {
     grid-template-columns: 1fr;
@@ -4454,13 +4547,19 @@
 .kb-card__icon {
   display: inline-grid;
   place-items: center;
-  width: 54px;
-  height: 54px;
+  width: 56px;
+  height: 56px;
   border-radius: 14px;
-  background: linear-gradient(135deg, var(--navy-700), var(--navy-800));
-  color: var(--gold-400);
-  font-size: 1.4rem;
+  background: color-mix(in srgb, var(--gold-500) 10%, transparent);
+  color: var(--gold-500);
+  font-size: 1.6rem;
   margin-bottom: 20px;
+  transition: background 0.35s var(--ease), transform 0.35s var(--ease);
+}
+
+.kb-card:hover .kb-card__icon {
+  background: color-mix(in srgb, var(--gold-500) 16%, transparent);
+  transform: scale(1.08);
 }
 
 .kb-card h3 {
@@ -5257,7 +5356,7 @@
 
 /* ── KB card icon: vivid gradient ── */
 .kb-card__icon {
-  background: linear-gradient(135deg, var(--navy-700), var(--blue-600)) !important;
+  /* background: linear-gradient(135deg, var(--navy-700), var(--blue-600)) !important; */
 }
 
 /* ── General card hover refinement ── */

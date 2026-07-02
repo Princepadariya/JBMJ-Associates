@@ -174,7 +174,7 @@ export default function Home() {
             </h1>
             <span className="hero__title-rule" aria-hidden="true" />
             <p className="hero__lead">
-              JBMJ &amp; Associates is a firm of Chartered Accountants and
+              JBMJ &amp; Associates LLP is a firm of Chartered Accountants and
               Company Secretaries delivering audit, taxation, GST, corporate law
               and growth advisory — with the precision your business deserves.
             </p>
@@ -267,26 +267,13 @@ export default function Home() {
       {/* ============== ABOUT PREVIEW ============== */}
       <section className="section about-pre">
         <div className="container about-pre__grid">
-          <div className="about-pre__media reveal">
-            <div className="about-pre__frame">
-              <div className="about-pre__badge">
-                <span className="about-pre__badge-num">Est.</span>
-                <span className="about-pre__badge-text">A modern CA &amp; CS practice</span>
-              </div>
-              <div className="about-pre__seal">
-                <span>JBMJ</span>
-                <small>&amp; Associates</small>
-              </div>
-            </div>
-          </div>
-
           <div className="about-pre__content reveal">
             <SectionHeading
               eyebrow="About the Firm"
               title="A practice built on diligence, depth and trust"
             />
             <p className="about-pre__text">
-              JBMJ &amp; Associates brings together Chartered Accountants and
+              JBMJ &amp; Associates LLP brings together Chartered Accountants and
               Company Secretaries under one roof — combining technical rigour with
               real business understanding. From assurance and taxation to
               corporate law and startup funding, we help clients make informed
@@ -305,6 +292,18 @@ export default function Home() {
               More about us <FiArrowRight />
             </Link>
           </div>
+
+          <aside className="about-pre__aside reveal">
+            <span className="about-pre__aside-kicker">Areas of expertise</span>
+            <ul className="about-pre__expertise">
+              <li><FiCheck /> Audit &amp; Assurance</li>
+              <li><FiCheck /> Direct &amp; Indirect Taxation</li>
+              <li><FiCheck /> GST Compliance &amp; Advisory</li>
+              <li><FiCheck /> Corporate &amp; ROC Compliance</li>
+              <li><FiCheck /> CMA Data &amp; Project Finance</li>
+              <li><FiCheck /> Startup &amp; Business Advisory</li>
+            </ul>
+          </aside>
         </div>
       </section>
 
@@ -517,7 +516,7 @@ export default function Home() {
             </h2>
             <p className="cta-band__text">
               Book a no-obligation consultation with our partners and see how
-              JBMJ &amp; Associates can support your compliance and growth.
+              JBMJ &amp; Associates LLP can support your compliance and growth.
             </p>
           </div>
           <div className="cta-band__actions">

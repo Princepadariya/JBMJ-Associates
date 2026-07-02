@@ -1,21 +1,21 @@
 import { NavLink } from 'react-router-dom'
 import {
-  FiGrid, FiBell, FiLink, FiBookOpen, FiFileText, FiFile, FiCalendar,
-  FiTag, FiHelpCircle, FiBook, FiTrendingUp,
-} from 'react-icons/fi'
+  LuLayoutGrid, LuBell, LuLink, LuBookOpen, LuFileText, LuFile, LuCalendar,
+  LuTag, LuCircleHelp, LuBook, LuTrendingUp,
+} from 'react-icons/lu'
 
 export const KB_SECTIONS = [
-  { id: 'calculators', label: 'Calculators', icon: FiGrid },
-  { id: 'rate-card', label: 'Rate Card', icon: FiTag },
-  { id: 'due-dates', label: 'Due Dates', icon: FiCalendar },
-  { id: 'itr-selector', label: 'ITR Helper', icon: FiHelpCircle },
-  { id: 'key-sections', label: 'Key Sections', icon: FiBook },
-  { id: 'read-financials', label: 'Read Financials', icon: FiTrendingUp },
-  { id: 'bulletins', label: 'Bulletins', icon: FiBell },
-  { id: 'links', label: 'Links', icon: FiLink },
-  { id: 'acts', label: 'Acts', icon: FiBookOpen },
-  { id: 'rules', label: 'Rules', icon: FiFileText },
-  { id: 'forms', label: 'Forms', icon: FiFile },
+  { id: 'calculators', label: 'Calculators', icon: LuLayoutGrid },
+  { id: 'rate-card', label: 'Rate Card', icon: LuTag },
+  { id: 'due-dates', label: 'Due Dates', icon: LuCalendar },
+  { id: 'itr-selector', label: 'ITR Helper', icon: LuCircleHelp },
+  { id: 'key-sections', label: 'Key Sections', icon: LuBook },
+  { id: 'read-financials', label: 'Read Financials', icon: LuTrendingUp },
+  { id: 'bulletins', label: 'Bulletins', icon: LuBell },
+  { id: 'links', label: 'Links', icon: LuLink },
+  { id: 'acts', label: 'Acts', icon: LuBookOpen },
+  { id: 'rules', label: 'Rules', icon: LuFileText },
+  { id: 'forms', label: 'Forms', icon: LuFile },
 ]
 
 /* Horizontal sub-navigation shared across all Knowledge Bank pages. */

@@ -1,6 +1,6 @@
 export const faqs = [
   {
-    q: 'What services does JBMJ & Associates offer?',
+    q: 'What services does JBMJ & Associates LLP offer?',
     a: 'We provide a full spectrum of services — statutory & tax audits, income tax and GST compliance and advisory, accounting and book-keeping, CMA & banking reports, corporate & secretarial (ROC/LLP) compliance, startup registration and funding support, and business & risk advisory.',
   },
   {

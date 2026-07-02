@@ -17,7 +17,7 @@ export default function FloatingActions() {
       <a
         className="fab__btn fab__btn--wa"
         href={`https://wa.me/${firm.whatsapp}?text=${encodeURIComponent(
-          'Hello JBMJ & Associates, I would like to know more about your services.'
+          'Hello JBMJ & Associates LLP, I would like to know more about your services.'
         )}`}
         target="_blank"
         rel="noopener noreferrer"

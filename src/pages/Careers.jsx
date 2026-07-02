@@ -64,7 +64,7 @@ export default function Careers() {
     <>
       <PageHero
         eyebrow="Opportunity / Careers"
-        title="Build your career with JBMJ & Associates"
+        title="Build your career with JBMJ & Associates LLP"
         lead="We’re always looking for sharp, sincere people who want to do meaningful professional work. If that sounds like you, we’d love to hear from you."
         crumb="Careers"
       />

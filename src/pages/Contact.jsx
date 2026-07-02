@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import {
-  FiMapPin,
-  FiPhone,
-  FiMail,
-  FiClock,
   FiSend,
   FiCheckCircle,
 } from 'react-icons/fi'
+import {
+  LuMapPin,
+  LuPhone,
+  LuMail,
+  LuClock
+} from 'react-icons/lu'
 import useReveal from '../hooks/useReveal'
 import PageHero from '../components/PageHero'
 import { firm } from '../data/firm'
@@ -32,7 +34,7 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           ...data,
-          _subject: `New enquiry from ${data.name || 'website'} — JBMJ & Associates`,
+          _subject: `New enquiry from ${data.name || 'website'} — JBMJ & Associates LLP`,
         }),
       })
       if (!res.ok) throw new Error('Network response was not ok')
@@ -65,7 +67,7 @@ export default function Contact() {
             <ul className="contact-info__list">
               {firm.offices.map((o) => (
                 <li key={o.city}>
-                  <span className="contact-info__icon"><FiMapPin /></span>
+                  <span className="contact-info__icon"><LuMapPin /></span>
                   <div>
                     <strong>{o.city} Office</strong>
                     <span>{o.lines}</span>
@@ -73,21 +75,21 @@ export default function Contact() {
                 </li>
               ))}
               <li>
-                <span className="contact-info__icon"><FiPhone /></span>
+                <span className="contact-info__icon"><LuPhone /></span>
                 <div>
                   <strong>Phone</strong>
                   <a href={firm.phoneHref}>{firm.phone}</a>
                 </div>
               </li>
               <li>
-                <span className="contact-info__icon"><FiMail /></span>
+                <span className="contact-info__icon"><LuMail /></span>
                 <div>
                   <strong>Email</strong>
                   <a href={firm.emailHref}>{firm.email}</a>
                 </div>
               </li>
               <li>
-                <span className="contact-info__icon"><FiClock /></span>
+                <span className="contact-info__icon"><LuClock /></span>
                 <div>
                   <strong>Working hours</strong>
                   <span>{firm.hours}</span>
@@ -178,7 +180,7 @@ export default function Contact() {
             {firm.offices.map((o) => (
               <div key={o.city} className="contact-map reveal">
                 <div className="contact-map__head">
-                  <FiMapPin />
+                  <LuMapPin />
                   <div>
                     <strong>{o.city} Office</strong>
                     <span>{o.lines}</span>
