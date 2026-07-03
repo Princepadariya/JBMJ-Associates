@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
 import {
   FiSend,
   FiCheckCircle,
@@ -55,67 +55,88 @@ export default function Contact() {
       />
 
       <section className="section">
-        <div className="container contact-grid">
-          {/* Info column */}
-          <aside className="contact-info reveal">
-            <h3 className="contact-info__title">Reach us directly</h3>
-            <p className="contact-info__lead">
-              Prefer to call or email? We’re happy to help — reach out using any
-              of the details below.
-            </p>
+        <div className="container">
+          <div className="contact-card reveal">
+            {/* Info panel */}
+            <aside className="contact-aside">
+              <div className="contact-aside__glow" aria-hidden="true" />
+              <span className="contact-aside__eyebrow">Get in touch</span>
+              <h3 className="contact-aside__title">Reach us directly</h3>
+              <p className="contact-aside__lead">
+                Prefer to call or email? Reach out using any of the details
+                below — we usually reply within one working day.
+              </p>
 
-            <ul className="contact-info__list">
-              {firm.offices.map((o) => (
-                <li key={o.city}>
-                  <span className="contact-info__icon"><LuMapPin /></span>
-                  <div>
-                    <strong>{o.city} Office</strong>
-                    <span>{o.lines}</span>
+              <ul className="contact-aside__list">
+                {firm.offices.map((o) => (
+                  <Fragment key={o.city}>
+                    <li className="contact-item">
+                      <span className="contact-item__icon"><LuMapPin /></span>
+                      <div className="contact-item__body">
+                        <span className="contact-item__label">{o.city} Office</span>
+                        <span className="contact-item__value">{o.lines}{o.state ? `, ${o.state}` : ''}{o.pincode ? ` – ${o.pincode}` : ''}</span>
+                      </div>
+                    </li>
+                    {o.city === 'Rajkot' && (
+                      <li className="contact-item">
+                        <span className="contact-item__icon"><LuPhone /></span>
+                        <div className="contact-item__body">
+                          <span className="contact-item__label">Phone</span>
+                          <a className="contact-item__value" href={firm.phoneHref}>{firm.phone}</a>
+                        </div>
+                      </li>
+                    )}
+                    {o.city === 'Surat' && (
+                      <li className="contact-item">
+                        <span className="contact-item__icon"><LuPhone /></span>
+                        <div className="contact-item__body">
+                          <span className="contact-item__label">Phone</span>
+                          <a className="contact-item__value" href="tel:+917041843541">+91 70418 43541</a>
+                        </div>
+                      </li>
+                    )}
+                  </Fragment>
+                ))}
+                <li className="contact-item">
+                  <span className="contact-item__icon"><LuMail /></span>
+                  <div className="contact-item__body">
+                    <span className="contact-item__label">Email</span>
+                    <a className="contact-item__value" href={firm.emailHref}>{firm.email}</a>
                   </div>
                 </li>
-              ))}
-              <li>
-                <span className="contact-info__icon"><LuPhone /></span>
-                <div>
-                  <strong>Phone</strong>
-                  <a href={firm.phoneHref}>{firm.phone}</a>
-                </div>
-              </li>
-              <li>
-                <span className="contact-info__icon"><LuMail /></span>
-                <div>
-                  <strong>Email</strong>
-                  <a href={firm.emailHref}>{firm.email}</a>
-                </div>
-              </li>
-              <li>
-                <span className="contact-info__icon"><LuClock /></span>
-                <div>
-                  <strong>Working hours</strong>
-                  <span>{firm.hours}</span>
-                </div>
-              </li>
-            </ul>
-          </aside>
+                <li className="contact-item">
+                  <span className="contact-item__icon"><LuClock /></span>
+                  <div className="contact-item__body">
+                    <span className="contact-item__label">Working hours</span>
+                    <span className="contact-item__value">{firm.hours}</span>
+                  </div>
+                </li>
+              </ul>
+            </aside>
 
-          {/* Form column */}
-          <div className="contact-form-wrap reveal">
-            {sent ? (
-              <div className="contact-success">
-                <FiCheckCircle />
-                <h3>Thank you for reaching out</h3>
-                <p>
-                  Your message has been sent to our team. We’ll get back to you
-                  shortly — usually within one working day.
-                </p>
-                <button className="btn btn--outline" onClick={() => setStatus('idle')}>
-                  Send another message
-                </button>
-              </div>
-            ) : (
-              <form className="contact-form" onSubmit={handleSubmit}>
-                <h3 className="contact-form__title">Send us a message</h3>
-                <div className="contact-form__row">
+            {/* Form panel */}
+            <div className="contact-panel">
+              {sent ? (
+                <div className="contact-success">
+                  <FiCheckCircle />
+                  <h3>Thank you for reaching out</h3>
+                  <p>
+                    Your message has been sent to our team. We’ll get back to you
+                    shortly — usually within one working day.
+                  </p>
+                  <button className="btn btn--outline" onClick={() => setStatus('idle')}>
+                    Send another message
+                  </button>
+                </div>
+              ) : (
+                <form className="contact-form" onSubmit={handleSubmit}>
+                  <div className="contact-form__head">
+                    <h3 className="contact-form__title">Send us a message</h3>
+                    <p className="contact-form__sub">
+                      Fill in the form and our team will be in touch shortly.
+                    </p>
+                  </div>
+                  <div className="contact-form__row">
                   <label>
                     Full name
                     <input type="text" name="name" required placeholder="Your name" />
@@ -145,7 +166,7 @@ export default function Contact() {
                     </select>
                   </label>
                 </div>
-                <label>
+                <label className="contact-form__message">
                   Message
                   <textarea
                     name="message"
@@ -169,6 +190,7 @@ export default function Contact() {
                 </button>
               </form>
             )}
+            </div>
           </div>
         </div>
       </section>
@@ -183,7 +205,7 @@ export default function Contact() {
                   <LuMapPin />
                   <div>
                     <strong>{o.city} Office</strong>
-                    <span>{o.lines}</span>
+                    <span>{o.lines}{o.state ? `, ${o.state}` : ''}{o.pincode ? ` – ${o.pincode}` : ''}</span>
                   </div>
                 </div>
                 <iframe
@@ -192,7 +214,7 @@ export default function Contact() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   src={`https://maps.google.com/maps?q=${encodeURIComponent(
-                    o.lines + ', ' + o.city
+                    o.lines + ', ' + o.city + (o.state ? ', ' + o.state : '') + (o.pincode ? ' ' + o.pincode : '')
                   )}&output=embed`}
                 />
               </div>

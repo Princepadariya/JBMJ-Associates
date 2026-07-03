@@ -20,7 +20,7 @@ const knowledgeItems = [
 const links = [
   { to: '/', label: 'Home', end: true },
   { to: '/about', label: 'About us' },
-  { to: '/team', label: 'Our People' },
+  { to: '/team', label: 'Core Team' },
   { to: '/services', label: 'Services' },
   { to: '/knowledge', label: 'Knowledge Bank', children: knowledgeItems },
   { to: '/careers', label: 'Careers' },
@@ -122,14 +122,23 @@ export default function Navbar() {
           {links.map((l) =>
             l.children ? (
               <div key={l.to} className="nav__drawer-group">
-                <button
-                  className="nav__drawer-link nav__drawer-toggle"
-                  aria-expanded={subOpen}
-                  onClick={() => setSubOpen((v) => !v)}
-                >
-                  {l.label}
-                  <FiChevronDown className={`nav__caret ${subOpen ? 'is-open' : ''}`} />
-                </button>
+                <div className="nav__drawer-row">
+                  <NavLink
+                    to={l.to}
+                    className={({ isActive }) => `nav__drawer-link nav__drawer-row__link ${isActive ? 'is-active' : ''}`}
+                  >
+                    {l.label}
+                  </NavLink>
+                  <button
+                    type="button"
+                    className="nav__drawer-caret-btn"
+                    aria-expanded={subOpen}
+                    aria-label={`${subOpen ? 'Collapse' : 'Expand'} ${l.label} submenu`}
+                    onClick={() => setSubOpen((v) => !v)}
+                  >
+                    <FiChevronDown className={`nav__caret ${subOpen ? 'is-open' : ''}`} />
+                  </button>
+                </div>
                 {subOpen && (
                   <div className="nav__drawer-sub">
                     {l.children.map((c) => (

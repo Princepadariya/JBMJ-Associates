@@ -15,7 +15,7 @@ const META = {
     desc: 'Learn about JBMJ & Associates LLP — our objective, mission, vision and the multi-disciplinary CA & CS team behind the firm.',
   },
   '/team': {
-    title: 'Our People | JBMJ & Associates LLP',
+    title: 'Core Team | JBMJ & Associates LLP',
     desc: 'Meet the Chartered Accountants and Company Secretaries who lead every engagement at JBMJ & Associates LLP.',
   },
   '/services': {
@@ -36,7 +36,7 @@ const META = {
   },
   '/contact': {
     title: 'Contact Us | JBMJ & Associates LLP',
-    desc: 'Get in touch with JBMJ & Associates LLP — offices in Rajkot and Surat. Call, email or send us a message.',
+    desc: 'Get in touch with JBMJ & Associates LLP — offices in Rajkot, Surat and Mumbai. Call, email or send us a message.',
   },
   '/faq': {
     title: 'FAQ | JBMJ & Associates LLP',

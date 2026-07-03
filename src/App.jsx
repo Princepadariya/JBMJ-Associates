@@ -14,6 +14,7 @@ function ScrollProgress() {
   }, [])
   return <div className="scroll-progress" style={{ transform: `scaleX(${pct / 100})` }} aria-hidden="true" />
 }
+import SplashScreen from './components/SplashScreen'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
@@ -37,6 +38,7 @@ import './App.css'
 export default function App() {
   return (
     <>
+      <SplashScreen />
       <ScrollProgress />
       <a href="#main" className="skip-link">Skip to content</a>
       <ScrollToTop />

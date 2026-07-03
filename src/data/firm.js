@@ -16,11 +16,21 @@ export const firm = {
   offices: [
     {
       city: 'Rajkot',
-      lines: 'A-1016, RK Iconic, Near Sheetal Park, 150ft Ring Road, Rajkot – 360 006',
+      lines: 'A-1016, RK Iconic, Near Sheetal Park, 150ft Ring Road, Rajkot',
+      state: 'Gujarat',
+      pincode: '360 006',
     },
     {
       city: 'Surat',
-      lines: '3059, Silver Business Point, Nr. VIP Circle, Utran, Surat – 394 101',
+      lines: '3059, Silver Business Point, Nr. VIP Circle, Utran, Surat',
+      state: 'Gujarat',
+      pincode: '394 101',
+    },
+    {
+      city: 'Mumbai',
+      lines: 'A-302, Navroz Building 5, Shanti Nagar, SV Road, Dahisar (E), Mumbai',
+      state: 'Maharashtra',
+      pincode: '400 068',
     },
   ],
   hours: 'Mon – Sat · 10:00 AM – 7:00 PM',
