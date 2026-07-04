@@ -11,14 +11,16 @@
   align-items: center;
   justify-content: center;
   background: var(--paper);
-  box-shadow: 0 30px 60px -20px rgba(7, 23, 43, 0.25);
-  transform: translateY(0);
+  opacity: 1;
   visibility: visible;
-  transition: transform 0.75s var(--ease) 0.15s, visibility 0.75s var(--ease) 0.15s;
+  /* Duration matches FLY_DURATION in SplashScreen.jsx so the background
+     reveal completes at the same moment the logo lands on the navbar,
+     instead of waiting until after it arrives. */
+  transition: opacity 0.7s ease, visibility 0.7s ease;
 }
 
-.splash.is-hiding {
-  transform: translateY(-100%);
+.splash.is-flying {
+  opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
@@ -118,17 +120,30 @@
   border-right: 2px solid var(--gold-500);
 }
 
+.splash__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 288px;
+  height: 288px;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.splash__ring-circle {
+  fill: none;
+  stroke: var(--gold-500);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  animation: splash-ring-draw 0.7s var(--ease) both;
+}
+
 .splash__inner {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
-}
-
-.splash.is-hiding .splash__inner {
-  opacity: 0;
-  transform: scale(0.94);
 }
 
 .splash__logo {
@@ -146,6 +161,7 @@
   gap: 4px;
   text-align: center;
   opacity: 0;
+  transition: opacity 0.25s ease;
   animation: splash-text-in 0.6s var(--ease) 1s both;
 }
 
@@ -233,11 +249,43 @@
   }
 }
 
-.splash.is-hiding .splash__grid,
-.splash.is-hiding .splash__scan,
-.splash.is-hiding .splash__dot,
-.splash.is-hiding .splash__corner {
+@keyframes splash-ring-draw {
+  0% {
+    stroke-dashoffset: 880;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Decorations (and the wordmark text) fade away once the logo starts its
+   flight to the navbar — the logo itself is untouched here, it only moves
+   via the inline transform applied in SplashScreen.jsx. */
+.splash.is-flying .splash__grid,
+.splash.is-flying .splash__scan,
+.splash.is-flying .splash__dot,
+.splash.is-flying .splash__corner,
+.splash.is-flying .splash__text {
+  /* cancel the entrance animation's held fill-mode so the opacity
+     transition (declared on the base rule) can take over smoothly */
+  animation: none;
   opacity: 0;
+}
+
+.splash.is-flying .splash__ring {
+  opacity: 0;
+}
+
+/* Cancel the entrance animation so the inline travel transform
+   (applied from SplashScreen.jsx once the navbar logo position is
+   measured) actually takes effect instead of being overridden by the
+   held fill-mode of splash-pop. Opacity must be restated here too —
+   the base rule's opacity:0 is the *pre-entrance* resting state, and
+   without the animation holding it at 1, cancelling it would make the
+   logo invisible right when it needs to fly to the navbar. */
+.splash.is-flying .splash__logo {
+  animation: none;
+  opacity: 1;
 }
 
 /* ===================== LOGO ===================== */
@@ -256,6 +304,7 @@
   display: block;
   width: auto;
   height: 40px;
+  aspect-ratio: 1058 / 747;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -3234,15 +3283,8 @@ a.contact-item__value:hover {
     transition: opacity 0.3s ease;
   }
 
-  .splash.is-hiding {
-    transform: none;
+  .splash.is-flying {
     opacity: 0;
-  }
-
-  .splash.is-hiding .splash__inner {
-    transition: none;
-    opacity: 1;
-    transform: none;
   }
 }
 
