@@ -25,7 +25,6 @@ export default function TeamCard({ member, detailed = false }) {
           <img
             src={member.photo}
             alt={member.name}
-            loading="lazy"
             onError={() => setImgFailed(true)}
           />
         ) : (

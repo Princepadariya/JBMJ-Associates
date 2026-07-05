@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 
-const SESSION_KEY = 'jbmj_splash_shown'
 const RING_RADIUS = 140
 const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS
 
@@ -34,13 +33,12 @@ export default function SplashScreen() {
     typeof window !== 'undefined' &&
     window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
 
-  const [visible, setVisible] = useState(() => !sessionStorage.getItem(SESSION_KEY))
+  const [visible, setVisible] = useState(true)
   const [stage, setStage] = useState('intro') // intro -> ring -> fly
   const logoRef = useRef(null)
 
   useEffect(() => {
     if (!visible) return
-    sessionStorage.setItem(SESSION_KEY, '1')
 
     if (prefersReducedMotion) {
       const t1 = setTimeout(() => setStage('fly'), 400)

@@ -85,6 +85,7 @@ function magneticMove(e) {
 function magneticLeave(e) {
   e.currentTarget.style.transform = ''
 }
+import SplashScreen from '../components/SplashScreen'
 import SectionHeading from '../components/SectionHeading'
 import TeamCard from '../components/TeamCard'
 import Faq from '../components/Faq'
@@ -152,6 +153,7 @@ export default function Home() {
 
   return (
     <>
+      <SplashScreen />
       {/* ============== HERO ============== */}
       <section className="hero">
         <div className="hero__bg" aria-hidden="true">
