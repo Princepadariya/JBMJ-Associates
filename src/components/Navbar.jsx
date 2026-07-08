@@ -17,14 +17,19 @@ const knowledgeItems = [
   { to: '/knowledge/forms', label: 'Forms' },
 ]
 
+const articlesItems = [
+  { to: '/articles/professional-laws', label: 'Professional Laws' },
+  { to: '/articles/general', label: 'General' },
+]
+
 const links = [
   { to: '/', label: 'Home', end: true },
   { to: '/about', label: 'About us' },
   { to: '/team', label: 'Core Team' },
   { to: '/services', label: 'Services' },
+  { to: '/articles', label: 'Articles & PPTs', children: articlesItems },
   { to: '/knowledge', label: 'Knowledge Bank', children: knowledgeItems },
   { to: '/careers', label: 'Careers' },
-  { to: '/contact', label: 'Contact us' },
 ]
 
 export default function Navbar() {

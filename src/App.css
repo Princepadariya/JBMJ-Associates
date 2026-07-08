@@ -147,7 +147,7 @@
 }
 
 .splash__logo {
-  width: 84px;
+  width: 120px;
   height: auto;
   object-fit: contain;
   opacity: 0;
@@ -168,7 +168,7 @@
 .splash__name {
   font-family: var(--font-serif);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   color: var(--navy-800);
   letter-spacing: 0.01em;
 }
@@ -185,6 +185,7 @@
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -195,6 +196,7 @@
     opacity: 0;
     transform: scaleX(0);
   }
+
   100% {
     opacity: 1;
     transform: scaleX(1);
@@ -206,6 +208,7 @@
     opacity: 0;
     transform: scale(0.3);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -217,6 +220,7 @@
     opacity: 0;
     transform: scale(1.5);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -228,10 +232,12 @@
     opacity: 0;
     transform: scale(0.82);
   }
+
   60% {
     opacity: 1;
     transform: scale(1.05);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -243,6 +249,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -253,6 +260,7 @@
   0% {
     stroke-dashoffset: 880;
   }
+
   100% {
     stroke-dashoffset: 0;
   }
@@ -363,7 +371,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 48px);
-  max-width: 1200px;
+  max-width: 1275px;
   z-index: 100;
   border-radius: 100px;
   background: #ffffff;
@@ -1587,7 +1595,6 @@
 .team-section-head__lead {
   color: var(--muted);
   font-size: 1.02rem;
-  max-width: 68ch;
   line-height: 1.7;
 }
 
@@ -1608,6 +1615,26 @@
   gap: 28px;
 }
 
+/* Centered variant (used for the two Founding Partners) */
+.team-grid--center {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 400px));
+  justify-content: center;
+}
+
+.team-section-head--center {
+  text-align: center;
+}
+
+.team-section-head--center .team-section-head__title {
+  padding-bottom: 18px;
+}
+
+.team-section-head--center .team-section-head__lead {
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .team-card {
   background: var(--paper);
   border: 1px solid var(--line);
@@ -1622,6 +1649,16 @@
 .team-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-md);
+}
+
+/* Highlight animation when scrolled to from About page */
+.team-card--highlight .team-card {
+  animation: team-highlight-pulse 1.8s ease;
+}
+
+@keyframes team-highlight-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(29, 78, 137, 0); border-color: var(--line); }
+  20%, 60% { box-shadow: 0 0 0 4px rgba(29, 78, 137, 0.25); border-color: var(--navy-700); }
 }
 
 /* Photo area — fixed proportions so a real headshot always sits well,
@@ -1980,6 +2017,9 @@
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 15px 24px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
   transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
 }
 
@@ -4091,28 +4131,118 @@ a.contact-item__value:hover {
   font-style: italic;
 }
 
+/* ===================== FAQS ===================== */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: box-shadow 0.2s var(--ease);
+}
+
+.faq-item:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-item__q {
+  padding: 16px 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--navy-800);
+  cursor: pointer;
+  user-select: none;
+  list-style: none; /* Hide default arrow in some browsers */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-item__q::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item__q::after {
+  content: '+';
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--gold-500);
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] .faq-item__q::after {
+  transform: rotate(45deg);
+}
+
+.faq-item__a {
+  padding: 0 20px 20px 20px;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--muted);
+  border-top: 1px solid transparent;
+}
+
+.faq-item[open] .faq-item__a {
+  border-top-color: var(--line-light);
+  padding-top: 16px;
+}
+
 /* ===================== DUE DATES (compliance calendar) ===================== */
+.duedate-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.duedate-filter-btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--navy-700);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+
+.duedate-filter-btn:hover {
+  background: var(--cream);
+  color: var(--gold-500);
+}
+
+.duedate-filter-btn.is-active {
+  background: var(--navy-800);
+  border-color: var(--navy-800);
+  color: #fff;
+}
+
 .duedate-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 14px;
 }
 
 .duedate-row {
   display: flex;
-  gap: 16px;
-  align-items: flex-start;
+  gap: 30px;
+  align-items: center;
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 18px 20px;
-  transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease), border-color 0.22s var(--ease);
+  transition: background-color 0.22s var(--ease), border-color 0.22s var(--ease);
 }
 
 .duedate-row:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-  border-color: transparent;
+  background-color: var(--cream);
+  border-color: var(--navy-800);
 }
 
 .duedate-row__date {
@@ -4122,7 +4252,7 @@ a.contact-item__value:hover {
   text-align: center;
   border-radius: var(--radius-sm);
   background: linear-gradient(140deg, var(--navy-700), var(--navy-900));
-  color: var(--gold-300);
+  color: #ffffff;
   font-weight: 700;
   font-size: 0.82rem;
   line-height: 1.3;
@@ -4602,7 +4732,7 @@ a.contact-item__value:hover {
 
 .calc-suite__navitem {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 11px;
   width: 100%;
   text-align: left;
@@ -4611,6 +4741,7 @@ a.contact-item__value:hover {
   background: transparent;
   border-radius: var(--radius);
   font-size: 0.9rem;
+  line-height: 1.3;
   font-weight: 600;
   color: var(--navy-700);
   cursor: pointer;
@@ -4619,6 +4750,7 @@ a.contact-item__value:hover {
 
 .calc-suite__navitem svg {
   font-size: 1.05rem;
+  margin-top: 2px;
   color: var(--muted-2);
   flex: none;
   transition: color 0.18s var(--ease);

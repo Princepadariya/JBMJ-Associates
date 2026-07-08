@@ -9,7 +9,7 @@ const RESULTS = {
   itr1: { form: 'ITR-1 (Sahaj)', reason: 'For a resident individual with salary/pension, one house property and other-source income, where total income is up to ₹50 lakh.' },
   itr2: { form: 'ITR-2', reason: 'For individuals/HUF with capital gains, more than one house property, foreign income/assets, or total income above ₹50 lakh — but no business/professional income.' },
   itr3: { form: 'ITR-3', reason: 'For individuals/HUF carrying on a business or profession under regular (non-presumptive) accounting.' },
-  itr4: { form: 'ITR-4 (Sugam)', reason: 'For residents opting for presumptive income under Sec 44AD / 44ADA / 44AE, with total income up to ₹50 lakh.' },
+  itr4: { form: 'ITR-4 (Sugam)', reason: 'For residents opting for presumptive income under Sec 58 / 59 / 60, with total income up to ₹50 lakh.' },
   itr5: { form: 'ITR-5', reason: 'For Firms, LLPs, AOPs and BOIs.' },
   itr6: { form: 'ITR-6', reason: 'For companies (other than those claiming exemption under Sec 11).' },
   itr7: { form: 'ITR-7', reason: 'For trusts, charitable/religious institutions and similar persons filing under Sec 139(4A)–(4F).' },
@@ -50,7 +50,7 @@ export default function ItrSelector() {
     if (a.presumptive === undefined) {
       question = {
         key: 'presumptive',
-        title: 'Are you opting for presumptive taxation (Sec 44AD / 44ADA / 44AE)?',
+        title: 'Are you opting for presumptive taxation (Sec 58 / 59 / 60)?',
         options: [
           { label: 'Yes, presumptive (income ≤ ₹50L)', value: 'yes' },
           { label: 'No, regular books of account', value: 'no' },

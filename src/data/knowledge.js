@@ -71,7 +71,7 @@ export const linkGroups = [
   {
     group: 'Verification & Search',
     links: [
-      { title: 'Verify PAN', desc: 'Know your PAN / link status', href: 'https://www.incometax.gov.in/iec/foportal/' },
+      { title: 'Verify PAN', desc: 'Know your PAN / link status', href: 'https://eportal.incometax.gov.in/iec/foservices/#/pre-login/verifyYourPAN' },
       { title: 'Search GST Taxpayer', desc: 'Verify GSTIN / UIN', href: 'https://services.gst.gov.in/services/searchtp' },
       { title: 'MCA Company Master Data', desc: 'Check company / LLP details', href: 'https://www.mca.gov.in/mcafoportal/viewCompanyMasterData.do' },
       { title: 'Udyam (MSME) Registration', desc: 'Register / verify MSME', href: 'https://udyamregistration.gov.in/' },
@@ -94,7 +94,7 @@ export const actGroups = [
   {
     group: 'Direct Tax',
     items: [
-      { title: 'Income Tax Act, 1961', desc: 'The main law for taxing income of individuals, firms and companies.', href: 'https://www.indiacode.nic.in/handle/123456789/2435' },
+      { title: 'Income Tax Act, 2025', desc: 'The main law for taxing income of individuals, firms and companies.', href: 'https://www.incometaxindia.gov.in/pages/acts/income-tax-act.aspx' },
       { title: 'Black Money (Undisclosed Foreign Income) Act, 2015', desc: 'Taxes and penalises undisclosed foreign income and assets.', href: 'https://www.indiacode.nic.in/' },
       { title: 'Benami Transactions (Prohibition) Act, 1988', desc: 'Bans holding property in someone else’s name to hide ownership.', href: 'https://www.indiacode.nic.in/' },
     ],
@@ -308,10 +308,43 @@ export const calculatorList = [
   { id: 'sip', title: 'SIP Calculator', desc: 'Mutual-fund SIP future value', live: true },
   { id: 'capital-gains', title: 'Capital Gains Calculator', desc: 'Short / long-term capital gains tax', live: true },
   { id: 'salary-hike', title: 'Salary Hike Calculator', desc: 'Revised salary after a hike', live: true },
-  { id: 'late-fee', title: 'Late Fee Calculator', desc: 'GST return late fee', live: true },
+  { id: 'late-fee', title: 'GST Late Fee & Interest', desc: 'GST return late fee & interest on late payment', live: true },
   { id: 'msme-interest', title: 'MSME Interest Calculator', desc: 'Delayed-payment interest (MSMED Act)', live: true },
-  { id: 'gst-interest', title: 'GST Interest Calculator', desc: 'Interest on late GST payment', live: true },
-  { id: 'tax-interest', title: 'Tax Interest Calculator', desc: 'Income-tax interest (234A/B/C)', live: true },
+  { id: 'tax-interest', title: 'Tax Interest Calculator', desc: 'Income-tax interest (432/433/434)', live: true },
   { id: 'advance-tax', title: 'Advance Tax', desc: 'Quarterly advance-tax instalments', live: true },
   { id: 'tds', title: 'TDS Calculator', desc: 'Section-wise TDS on payments', live: true },
+]
+
+/* ---------------- FAQs ---------------- */
+export const faqGroups = [
+  {
+    group: 'General Tax & Compliance',
+    items: [
+      {
+        q: 'Do I need to file an Income Tax Return if my income is below the basic exemption limit?',
+        a: 'Generally no, but if you have deposited more than ₹1 crore in a current account, incurred foreign travel expenses over ₹2 lakh, paid electricity bills over ₹1 lakh, or have foreign assets, filing is mandatory even if your income is below the exemption limit.'
+      },
+      {
+        q: 'What is the difference between Financial Year (FY) and Assessment Year (AY)?',
+        a: 'Financial Year (FY) is the year in which you earn the income (e.g., 1 April 2024 to 31 March 2025). Assessment Year (AY) is the year in which that income is evaluated and taxed (e.g., 1 April 2025 to 31 March 2026). So, AY 2025-26 corresponds to FY 2024-25.'
+      },
+      {
+        q: 'When is GST registration mandatory?',
+        a: 'Normally, businesses dealing in goods need GST if turnover exceeds ₹40 lakh (₹20 lakh for special category states). For services, the limit is ₹20 lakh (₹10 lakh for special states). However, mandatory registration applies irrespective of turnover for interstate sales, e-commerce sellers, and a few other specific cases.'
+      }
+    ]
+  },
+  {
+    group: 'Firm Services',
+    items: [
+      {
+        q: 'What documents do I need for my tax filing consultation?',
+        a: 'Please keep your PAN, Aadhaar, Form 16 (for salaried), bank statements, investment proofs (LIC, PPF, mutual funds, etc.), home loan certificates, and details of any other income (like rent or capital gains) ready.'
+      },
+      {
+        q: 'Can JBMJ & Associates handle my company incorporation?',
+        a: 'Yes, we provide end-to-end company and LLP incorporation services, including name approval, drafting MOA/AOA, obtaining PAN/TAN, and handling the initial ROC filings.'
+      }
+    ]
+  }
 ]

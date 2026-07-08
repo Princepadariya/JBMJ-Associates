@@ -5,17 +5,16 @@ import {
   FiPieChart,
   FiKey,
   FiGift,
-  FiDollarSign,
   FiTrendingUp,
   FiRepeat,
   FiBarChart2,
   FiClock,
   FiBriefcase,
-  FiActivity,
   FiAlertCircle,
   FiCalendar,
   FiScissors,
 } from 'react-icons/fi'
+import { BiRupee } from 'react-icons/bi'
 
 const inr = (n) =>
   isFinite(n)
@@ -114,55 +113,29 @@ function EmiCalculator() {
 
 /* ---------------- Income Tax (New Regime) Estimator ---------------- */
 function IncomeTaxCalculator() {
-  const [income, setIncome] = useState(1200000)
-
-  const { tax, cess, total, taxable } = useMemo(() => {
-    const gross = Number(income) || 0
-    const standardDeduction = 75000
-    const t = Math.max(0, gross - standardDeduction)
-    // Indicative new-regime slabs
-    const slabs = [
-      [400000, 0],
-      [800000, 0.05],
-      [1200000, 0.1],
-      [1600000, 0.15],
-      [2000000, 0.2],
-      [2400000, 0.25],
-      [Infinity, 0.3],
-    ]
-    let remaining = t
-    let prev = 0
-    let baseTax = 0
-    for (const [limit, r] of slabs) {
-      if (remaining <= 0) break
-      const band = Math.min(remaining, limit - prev)
-      baseTax += band * r
-      remaining -= band
-      prev = limit
-    }
-    // Section 87A rebate (indicative) for taxable income up to 12,00,000
-    if (t <= 1200000) baseTax = 0
-    const c = baseTax * 0.04
-    return { taxable: t, tax: baseTax, cess: c, total: baseTax + c }
-  }, [income])
-
   return (
     <div className="calc">
-      <div className="calc__fields">
-        <label className="calc__field">
-          Annual income (₹)
-          <input type="number" min="0" value={income} onChange={(e) => setIncome(e.target.value)} />
-        </label>
-        <div className="calc__field calc__field--note">
-          Basis
-          <span className="calc__hint">New regime · ₹75,000 standard deduction · indicative</span>
-        </div>
-      </div>
-      <div className="calc__results">
-        <div className="calc__result"><span>Taxable income</span><strong>{inr(taxable)}</strong></div>
-        <div className="calc__result"><span>Income tax</span><strong>{inr(tax)}</strong></div>
-        <div className="calc__result"><span>Health & edu. cess (4%)</span><strong>{inr(cess)}</strong></div>
-        <div className="calc__result calc__result--total"><span>Total tax</span><strong>{inr(total)}</strong></div>
+      <div className="calc__fields" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '3rem 1rem', gridColumn: '1 / -1', width: '100%' }}>
+        <p style={{ marginBottom: '1.5rem', color: 'var(--text-light)' }}>
+          For an accurate calculation, please use the official Income Tax Department calculator.
+        </p>
+        <a 
+          href="https://www.incometaxindia.gov.in/income-tax-calculator" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          style={{
+            display: 'inline-block',
+            backgroundColor: '#1e3a8a',
+            color: 'white',
+            padding: '0.75rem 1.5rem',
+            borderRadius: '4px',
+            textDecoration: 'none',
+            fontWeight: '500',
+            width: 'fit-content'
+          }}
+        >
+          Open Official Calculator
+        </a>
       </div>
     </div>
   )
@@ -208,6 +181,13 @@ function HraCalculator() {
             <option value="no">No (40%)</option>
           </select>
         </label>
+        <div className="calc__field calc__field--note" style={{ gridColumn: '1 / -1', marginTop: '0.5rem' }}>
+          *Cities included as Metro as per the Income Tax Act
+          <span className="calc__hint" style={{ marginTop: '0.5rem', display: 'block', lineHeight: '1.4' }}>
+            <strong>Till FY 2025–26:</strong> Delhi, Mumbai, Kolkata, Chennai.<br />
+            <strong>FY 2026–27 onwards:</strong> Delhi, Mumbai, Kolkata, Chennai, Bangalore, Pune, Hyderabad, Ahmedabad.
+          </span>
+        </div>
       </div>
       <div className="calc__results">
         <div className="calc__result"><span>HRA received</span><strong>{inr(Number(hra) || 0)}</strong></div>
@@ -440,21 +420,43 @@ function SalaryHikeCalculator() {
   )
 }
 
-/* ---------------- Late Fee Calculator (GST returns) ---------------- */
-function LateFeeCalculator() {
+function GstLateFeeInterestCalculator() {
   const [type, setType] = useState('normal')
-  const [days, setDays] = useState(10)
+  const [dueDate, setDueDate] = useState('')
+  const [filingDate, setFilingDate] = useState('')
+  const [tax, setTax] = useState(100000)
+  const [rate, setRate] = useState(18)
 
-  const PER_DAY = { normal: 50, nil: 20 } // ₹/day (CGST + SGST combined)
+  const PER_DAY = { normal: 50, nil: 20 }
   const CAP = { normal: 5000, nil: 500 }
 
-  const { fee, perDay, capped } = useMemo(() => {
+  const { fee, perDay, capped, days, interest, grandTotal } = useMemo(() => {
+    let d = 0
+    if (dueDate && filingDate) {
+      const diffTime = Math.max(0, new Date(filingDate) - new Date(dueDate))
+      d = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    }
+    // Late fee
     const pd = PER_DAY[type]
-    const raw = pd * (Number(days) || 0)
+    const rawFee = pd * d
     const cap = CAP[type]
-    return { fee: Math.min(raw, cap), perDay: pd, capped: raw > cap }
+    const lateFee = Math.min(rawFee, cap)
+
+    // Interest on tax (Sec 50 — simple interest)
+    const t = Number(tax) || 0
+    const r = Number(rate) || 0
+    const gstInterest = (t * r * d) / 100 / 365
+
+    return {
+      fee: lateFee,
+      perDay: pd,
+      capped: rawFee > cap,
+      days: d,
+      interest: gstInterest,
+      grandTotal: lateFee + gstInterest,
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [type, days])
+  }, [type, dueDate, filingDate, tax, rate])
 
   return (
     <div className="calc">
@@ -467,27 +469,38 @@ function LateFeeCalculator() {
           </select>
         </label>
         <label className="calc__field">
-          Days delayed
-          <input type="number" min="0" value={days} onChange={(e) => setDays(e.target.value)} />
+          Due date of filing
+          <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+        </label>
+        <label className="calc__field">
+          Date of filing
+          <input type="date" value={filingDate} onChange={(e) => setFilingDate(e.target.value)} />
+        </label>
+        <label className="calc__field">
+          Tax amount (₹)
+          <input type="number" min="0" value={tax} onChange={(e) => setTax(e.target.value)} />
+        </label>
+        <label className="calc__field">
+          Interest rate (% p.a.)
+          <select value={rate} onChange={(e) => setRate(e.target.value)}>
+            <option value="18">Late tax payment (18%)</option>
+            <option value="24">Excess/wrong ITC (24%)</option>
+          </select>
         </label>
         <div className="calc__field calc__field--note">
           Basis
-          <span className="calc__hint">₹{perDay}/day (CGST + SGST), subject to statutory cap</span>
+          <span className="calc__hint">Late fee: ₹{perDay}/day (CGST + SGST), subject to cap · Interest: Sec 50 — 18% p.a. (24% for excess ITC)</span>
         </div>
       </div>
       <div className="calc__results">
-        <div className="calc__result"><span>Rate per day</span><strong>₹ {perDay}</strong></div>
-        <div className="calc__result"><span>Days delayed</span><strong>{Number(days) || 0}</strong></div>
-        <div className="calc__result calc__result--total">
-          <span>Late fee {capped ? '(capped)' : ''}</span>
-          <strong>{inr(fee)}</strong>
-        </div>
+        <div className="calc__result"><span>Days delayed</span><strong>{days}</strong></div>
+        <div className="calc__result"><span>Late fee {capped ? '(capped)' : ''}</span><strong>{inr(fee)}</strong></div>
+        <div className="calc__result"><span>Interest on tax</span><strong>{inr(interest)}</strong></div>
+        <div className="calc__result calc__result--total"><span>Total payable</span><strong>{inr(grandTotal)}</strong></div>
       </div>
     </div>
   )
 }
-
-/* ---------------- MSME Interest Calculator (delayed payment) ---------------- */
 function MsmeInterestCalculator() {
   const [amount, setAmount] = useState(500000)
   const [days, setDays] = useState(90)
@@ -530,49 +543,8 @@ function MsmeInterestCalculator() {
   )
 }
 
-/* ---------------- GST Interest Calculator (late payment) ---------------- */
-function GstInterestCalculator() {
-  const [tax, setTax] = useState(100000)
-  const [days, setDays] = useState(30)
-  const [rate, setRate] = useState(18)
 
-  const interest = useMemo(() => {
-    const t = Number(tax) || 0
-    const r = Number(rate) || 0
-    const d = Number(days) || 0
-    return (t * r * d) / 100 / 365
-  }, [tax, days, rate])
-
-  return (
-    <div className="calc">
-      <div className="calc__fields">
-        <label className="calc__field">
-          Tax amount (₹)
-          <input type="number" min="0" value={tax} onChange={(e) => setTax(e.target.value)} />
-        </label>
-        <label className="calc__field">
-          Days delayed
-          <input type="number" min="0" value={days} onChange={(e) => setDays(e.target.value)} />
-        </label>
-        <label className="calc__field">
-          Interest rate (% p.a.)
-          <input type="number" min="0" step="0.1" value={rate} onChange={(e) => setRate(e.target.value)} />
-        </label>
-        <div className="calc__field calc__field--note">
-          Basis
-          <span className="calc__hint">Sec 50: 18% p.a. on late tax (24% for excess ITC)</span>
-        </div>
-      </div>
-      <div className="calc__results">
-        <div className="calc__result"><span>Tax amount</span><strong>{inr(Number(tax) || 0)}</strong></div>
-        <div className="calc__result"><span>Days delayed</span><strong>{Number(days) || 0}</strong></div>
-        <div className="calc__result calc__result--total"><span>Interest payable</span><strong>{inr(interest)}</strong></div>
-      </div>
-    </div>
-  )
-}
-
-/* ---------------- Tax Interest Calculator (income tax 234A/B/C) ---------------- */
+/* ---------------- Tax Interest Calculator (income tax 432/433/434) ---------------- */
 function TaxInterestCalculator() {
   const [tax, setTax] = useState(100000)
   const [months, setMonths] = useState(3)
@@ -602,7 +574,7 @@ function TaxInterestCalculator() {
         </label>
         <div className="calc__field calc__field--note">
           Basis
-          <span className="calc__hint">Sec 234A/B/C: 1% per month; part month = full month</span>
+          <span className="calc__hint">Sec 432/433/434: 1% per month; part month = full month</span>
         </div>
       </div>
       <div className="calc__results">
@@ -654,28 +626,36 @@ function AdvanceTaxCalculator() {
 
 /* ---------------- TDS Calculator ---------------- */
 const TDS_OPTS = [
-  { label: '194C — Contractor (Individual / HUF)', rate: 1 },
-  { label: '194C — Contractor (Others)', rate: 2 },
-  { label: '194J — Professional fees', rate: 10 },
-  { label: '194J — Technical services', rate: 2 },
-  { label: '194I — Rent (land / building)', rate: 10 },
-  { label: '194I — Rent (plant & machinery)', rate: 2 },
-  { label: '194H — Commission / brokerage', rate: 2 },
-  { label: '194A — Interest (other than securities)', rate: 10 },
-  { label: '194Q — Purchase of goods', rate: 0.1 },
-  { label: '194T — Payments to partners', rate: 10 },
+  { label: 'Sec 392 — Salary', rate: 0, isSlab: true },
+  { label: 'Sec 392(7) — EPF premature withdrawal', rate: 10 },
+  { label: 'Sec 393(1) — Interest on securities', rate: 10 },
+  { label: 'Sec 393(1) — Dividends', rate: 10 },
+  { label: 'Sec 393(1) — Interest (Bank / Post Office)', rate: 10 },
+  { label: 'Sec 393(1) — Contractor (Individual / HUF)', rate: 1 },
+  { label: 'Sec 393(1) — Contractor (Others)', rate: 2 },
+  { label: 'Sec 393(1) — Commission / brokerage', rate: 2 },
+  { label: 'Sec 393(1) — Rent (plant & machinery)', rate: 2 },
+  { label: 'Sec 393(1) — Rent (land / building)', rate: 10 },
+  { label: 'Sec 393(1) — Professional fees', rate: 10 },
+  { label: 'Sec 393(1) — Technical services', rate: 2 },
+  { label: 'Sec 393(1) — Purchase of goods', rate: 0.1 },
+  { label: 'Sec 393(1) — E-commerce operator', rate: 0.1 },
+  { label: 'Sec 393(1) — Payments to partners', rate: 10 },
+  { label: 'Sec 393(1) — Lottery / gaming winnings', rate: 30 },
 ]
 
 function TdsCalculator() {
   const [amount, setAmount] = useState(100000)
   const [idx, setIdx] = useState(0)
 
+  const selected = TDS_OPTS[idx]
+
   const { rate, tds, net } = useMemo(() => {
     const a = Number(amount) || 0
-    const r = TDS_OPTS[idx].rate
+    const r = selected.rate
     const t = (a * r) / 100
     return { rate: r, tds: t, net: a - t }
-  }, [amount, idx])
+  }, [amount, selected])
 
   return (
     <div className="calc">
@@ -694,13 +674,16 @@ function TdsCalculator() {
         </label>
         <div className="calc__field calc__field--note">
           Basis
-          <span className="calc__hint">Resident payees, above the relevant threshold. Rates are indicative.</span>
+          <span className="calc__hint">Income Tax Act 2025 (FY 2026-27). Resident payees, above the relevant threshold. Rates are indicative.</span>
         </div>
       </div>
       <div className="calc__results">
-        <div className="calc__result"><span>TDS rate</span><strong>{rate}%</strong></div>
-        <div className="calc__result calc__result--total"><span>TDS to deduct</span><strong>{inr(tds)}</strong></div>
-        <div className="calc__result"><span>Net payable</span><strong>{inr(net)}</strong></div>
+        <div className="calc__result"><span>TDS rate</span><strong>{selected.isSlab ? 'Slab rate' : `${rate}%`}</strong></div>
+        <div className="calc__result calc__result--total">
+          <span>TDS to deduct</span>
+          <strong>{selected.isSlab ? 'As per slab' : inr(tds)}</strong>
+        </div>
+        <div className="calc__result"><span>Net payable</span><strong>{selected.isSlab ? '—' : inr(net)}</strong></div>
       </div>
     </div>
   )
@@ -712,13 +695,12 @@ const CALCS = [
   { id: 'tax', label: 'Income Tax', icon: FiPieChart, Comp: IncomeTaxCalculator },
   { id: 'hra', label: 'HRA', icon: FiKey, Comp: HraCalculator },
   { id: 'gratuity', label: 'Gratuity', icon: FiGift, Comp: GratuityCalculator },
-  { id: 'fd', label: 'FD', icon: FiDollarSign, Comp: FdCalculator },
+  { id: 'fd', label: 'FD', icon: BiRupee, Comp: FdCalculator },
   { id: 'sip', label: 'SIP', icon: FiRepeat, Comp: SipCalculator },
   { id: 'capital-gains', label: 'Capital Gains', icon: FiTrendingUp, Comp: CapitalGainsCalculator },
   { id: 'salary-hike', label: 'Salary Hike', icon: FiBarChart2, Comp: SalaryHikeCalculator },
-  { id: 'late-fee', label: 'Late Fee', icon: FiClock, Comp: LateFeeCalculator },
+  { id: 'late-fee', label: 'GST Late Fee & Interest', icon: FiClock, Comp: GstLateFeeInterestCalculator },
   { id: 'msme-interest', label: 'MSME Interest', icon: FiBriefcase, Comp: MsmeInterestCalculator },
-  { id: 'gst-interest', label: 'GST Interest', icon: FiActivity, Comp: GstInterestCalculator },
   { id: 'tax-interest', label: 'Tax Interest', icon: FiAlertCircle, Comp: TaxInterestCalculator },
   { id: 'advance-tax', label: 'Advance Tax', icon: FiCalendar, Comp: AdvanceTaxCalculator },
   { id: 'tds', label: 'TDS', icon: FiScissors, Comp: TdsCalculator },

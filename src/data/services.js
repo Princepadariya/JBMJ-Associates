@@ -38,7 +38,7 @@ export const serviceCategories = [
       },
       {
         title: 'Tax Audit',
-        desc: 'Conducted as required under the Income Tax Act, 1961.',
+        desc: 'Conducted as required under the Income Tax Act, 2025.',
         keyDeliverables: [
           'Form 3CA/3CB and 3CD Preparation',
           'Reconciliation with GST returns',

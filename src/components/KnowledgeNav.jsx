@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import {
   LuLayoutGrid, LuBell, LuLink, LuBookOpen, LuFileText, LuFile, LuCalendar,
-  LuTag, LuCircleHelp, LuBook, LuTrendingUp,
+  LuTag, LuCircleHelp, LuBook, LuTrendingUp, LuMessageCircle
 } from 'react-icons/lu'
 
 export const KB_SECTIONS = [
@@ -9,6 +9,7 @@ export const KB_SECTIONS = [
   { id: 'rate-card', label: 'Rate Card', icon: LuTag },
   { id: 'due-dates', label: 'Due Dates', icon: LuCalendar },
   { id: 'itr-selector', label: 'ITR Helper', icon: LuCircleHelp },
+  { id: 'faqs', label: 'FAQs', icon: LuMessageCircle },
   { id: 'key-sections', label: 'Key Sections', icon: LuBook },
   { id: 'read-financials', label: 'Read Financials', icon: LuTrendingUp },
   { id: 'bulletins', label: 'Bulletins', icon: LuBell },

@@ -139,7 +139,7 @@ export default function About() {
           </div>
           <div className="leaders-grid">
             {team.map((m) => (
-              <div key={m.id} className="leader-row reveal">
+              <Link to={`/team#${m.id}`} key={m.id} className="leader-row reveal">
                 <div className="leader-row__avatar">
                   {m.photo ? (
                     <img src={m.photo} alt={m.name} />
@@ -152,7 +152,7 @@ export default function About() {
                   <p className="leader-row__role">{m.role}</p>
                   <p className="leader-row__cred">{m.credential}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -162,7 +162,7 @@ export default function About() {
         <div className="container cta-band__inner reveal">
           <div>
             <span className="eyebrow">Get started</span>
-            <h2 className="cta-band__title">Let’s build something dependable together.</h2>
+            <h2 className="cta-band__title">Together Towards Excellence</h2>
             <p className="cta-band__text">
               Whether you’re starting up or scaling up, our team is ready to help.
             </p>

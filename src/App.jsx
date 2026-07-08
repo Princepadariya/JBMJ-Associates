@@ -31,6 +31,7 @@ import Careers from './pages/Careers'
 import Contact from './pages/Contact'
 import Faqs from './pages/Faqs'
 import Privacy from './pages/Privacy'
+import Articles from './pages/Articles'
 import NotFound from './pages/NotFound'
 import './App.css'
 
@@ -52,6 +53,8 @@ export default function App() {
           <Route path="/industries" element={<Industries />} />
           <Route path="/knowledge" element={<KnowledgeBank />} />
           <Route path="/knowledge/:section" element={<KnowledgeSection />} />
+          <Route path="/articles" element={<Articles />} />
+          <Route path="/articles/:category" element={<Articles />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<Faqs />} />

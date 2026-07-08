@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { FiArrowRight } from 'react-icons/fi'
 import useReveal from '../hooks/useReveal'
 import PageHero from '../components/PageHero'
@@ -10,6 +11,24 @@ const associates = team.filter((m) => m.role !== 'Founding & Designated Partner'
 
 export default function Team() {
   useReveal()
+  const { hash } = useLocation()
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '')
+      // small delay so reveal animations + layout settle before scrolling
+      const timer = setTimeout(() => {
+        const el = document.getElementById(id)
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          el.classList.add('team-card--highlight')
+          setTimeout(() => el.classList.remove('team-card--highlight'), 2000)
+        }
+      }, 400)
+      return () => clearTimeout(timer)
+    }
+  }, [hash])
+
   return (
     <>
       <PageHero
@@ -22,15 +41,15 @@ export default function Team() {
       {/* ── Founding Partners ── */}
       <section className="section">
         <div className="container">
-          <div className="team-section-head reveal">
+          <div className="team-section-head">
             <h2 className="team-section-head__title">Founding Partners</h2>
             <p className="team-section-head__lead">
               Our founding partners bring together deep technical expertise and a shared commitment to delivering partner-led advisory across audit, taxation, and corporate law.
             </p>
           </div>
-          <div className="team-grid team-grid--detailed">
+          <div className="team-grid team-grid--detailed team-grid--center">
             {founders.map((m) => (
-              <div key={m.id} className="reveal">
+              <div key={m.id} id={m.id} className="reveal">
                 <TeamCard member={m} detailed />
               </div>
             ))}
@@ -49,7 +68,7 @@ export default function Team() {
           </div>
           <div className="team-grid team-grid--detailed">
             {associates.map((m) => (
-              <div key={m.id} className="reveal">
+              <div key={m.id} id={m.id} className="reveal">
                 <TeamCard member={m} detailed />
               </div>
             ))}

@@ -6,47 +6,42 @@
 */
 export const keySectionGroups = [
   {
-    group: 'Income Tax Act, 1961',
+    group: 'Income Tax Act, 2025',
     items: [
       {
-        section: 'Sec 44AD',
+        section: 'Sec 58',
         title: 'Presumptive taxation for small business',
-        plain: 'Lets eligible small businesses (turnover within the prescribed limit) declare profit at a flat 8% of turnover — or 6% for receipts through banking/digital channels — instead of maintaining detailed books.',
+        plain: 'Lets eligible small businesses (turnover within the prescribed limit) declare profit at a flat 8% of turnover — or 6% for receipts through banking/digital channels — instead of maintaining detailed books. (Earlier Sec 44AD of the 1961 Act.)',
       },
       {
-        section: 'Sec 44ADA',
+        section: 'Sec 59',
         title: 'Presumptive taxation for professionals',
-        plain: 'Eligible professionals (doctors, lawyers, CAs, architects, etc.) within the turnover limit can declare 50% of gross receipts as profit, simplifying compliance.',
+        plain: 'Eligible professionals (doctors, lawyers, CAs, architects, etc.) within the turnover limit can declare 50% of gross receipts as profit, simplifying compliance. (Earlier Sec 44ADA of the 1961 Act.)',
       },
       {
-        section: 'Sec 80C',
+        section: 'Sec 123',
         title: 'Deductions for savings & investments',
-        plain: 'Lets individuals/HUFs reduce taxable income by up to ₹1,50,000 for specified investments and payments — LIC, PPF, ELSS, principal on home loan, children’s tuition, etc. (old regime).',
+        plain: 'Lets individuals/HUFs reduce taxable income by up to ₹1,50,000 for specified investments and payments — LIC, PPF, ELSS, principal on home loan, children\'s tuition, etc. (old regime). (Earlier Sec 80C of the 1961 Act.)',
       },
       {
-        section: 'Sec 80D',
+        section: 'Sec 126',
         title: 'Health insurance premium deduction',
-        plain: 'Deduction for medical insurance premiums paid for self, family and parents — with a higher limit when senior citizens are covered (old regime).',
+        plain: 'Deduction for medical insurance premiums paid for self, family and parents — with a higher limit when senior citizens are covered (old regime). (Earlier Sec 80D of the 1961 Act.)',
       },
       {
-        section: 'Sec 194C',
-        title: 'TDS on payments to contractors',
-        plain: 'Tax must be deducted when paying a contractor — generally 1% if the payee is an individual/HUF and 2% otherwise — once the payment crosses the threshold.',
+        section: 'Sec 393',
+        title: 'TDS on payments to contractors & professionals',
+        plain: 'Tax must be deducted on payments to contractors (1% for individual/HUF, 2% for others) and on professional/technical fees (10% / 2%) once the payment crosses the threshold. (Consolidated from earlier Sec 194C, 194J, etc. of the 1961 Act.)',
       },
       {
-        section: 'Sec 194J',
-        title: 'TDS on professional & technical fees',
-        plain: 'Tax is deducted on fees for professional or technical services — generally 10% (2% for certain technical services / call-centres) above the threshold.',
-      },
-      {
-        section: 'Sec 234A/B/C',
+        section: 'Sec 432/433/434',
         title: 'Interest for late filing / short tax',
-        plain: 'Charges interest at 1% per month for filing late (234A), not paying enough advance tax (234B), or deferring advance-tax instalments (234C).',
+        plain: 'Charges interest at 1% per month for filing late (432), not paying enough advance tax (433), or deferring advance-tax instalments (434). (Earlier Sec 234A/B/C of the 1961 Act.)',
       },
       {
-        section: 'Sec 87A',
+        section: 'Sec 156',
         title: 'Rebate for small taxpayers',
-        plain: 'Resident individuals with taxable income up to the prescribed limit get a rebate that effectively reduces their tax to nil — limits differ between the old and new regimes.',
+        plain: 'Resident individuals with taxable income up to the prescribed limit get a rebate that effectively reduces their tax to nil — limits differ between the old and new regimes. (Earlier Sec 87A of the 1961 Act.)',
       },
     ],
   },

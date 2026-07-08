@@ -15,6 +15,7 @@ import {
   ruleGroups,
   formGroups,
   dueDateGroups,
+  faqGroups,
 } from '../data/knowledge'
 import { keySectionGroups } from '../data/keySections'
 import { firm } from '../data/firm'
@@ -35,6 +36,10 @@ const META = {
   'itr-selector': {
     title: 'Which ITR applies to you?',
     lead: 'Answer a few quick questions and we’ll point you to the right income-tax return form.',
+  },
+  faqs: {
+    title: 'Frequently Asked Questions',
+    lead: 'Common questions on taxation, compliance, and our firm services.',
   },
   'key-sections': {
     title: 'Key Sections — in plain English',
@@ -95,8 +100,9 @@ function GroupedLinks({ groups, itemsKey = 'items', withDesc }) {
 
 export default function KnowledgeSection() {
   const { section } = useParams()
-  useReveal([section])
   const [subStatus, setSubStatus] = useState('idle') // idle | sent
+  const [dateFilter, setDateFilter] = useState('All')
+  useReveal([section, dateFilter])
 
   const subscribe = async (e) => {
     e.preventDefault()
@@ -160,6 +166,26 @@ export default function KnowledgeSection() {
               </div>
             )}
 
+            {section === 'faqs' && (
+              <div className="kb-groups">
+                {faqGroups.map((g) => (
+                  <div key={g.group} className="kb-group reveal">
+                    <h3 className="kb-group__title">{g.group}</h3>
+                    <div className="faq-list">
+                      {g.items.map((f, i) => (
+                        <details key={i} className="faq-item">
+                          <summary className="faq-item__q">{f.q}</summary>
+                          <div className="faq-item__a">
+                            <p>{f.a}</p>
+                          </div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
             {section === 'bulletins' && (
               <div className="kb-bulletins">
                 {bulletins.map((b, i) => (
@@ -193,7 +219,22 @@ export default function KnowledgeSection() {
                     </form>
                   )}
                 </div>
-                {dueDateGroups.map((g) => (
+                {/* Filter buttons */}
+                <div className="duedate-filters reveal">
+                  {['All', 'Monthly', 'Quarterly', 'Annual'].map((f) => (
+                    <button
+                      key={f}
+                      className={`duedate-filter-btn ${dateFilter === f ? 'is-active' : ''}`}
+                      onClick={() => setDateFilter(f)}
+                    >
+                      {f}
+                    </button>
+                  ))}
+                </div>
+
+                {dueDateGroups
+                  .filter((g) => dateFilter === 'All' || g.group === dateFilter)
+                  .map((g) => (
                   <div key={g.group} className="kb-group reveal">
                     <h3 className="kb-group__title">{g.group}</h3>
                     <div className="duedate-list">
