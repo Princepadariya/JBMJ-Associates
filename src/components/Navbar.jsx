@@ -8,6 +8,7 @@ const knowledgeItems = [
   { to: '/knowledge/rate-card', label: 'Rate Card' },
   { to: '/knowledge/due-dates', label: 'Due Dates' },
   { to: '/knowledge/itr-selector', label: 'ITR Helper' },
+  { to: '/knowledge/faqs', label: 'FAQs' },
   { to: '/knowledge/key-sections', label: 'Key Sections' },
   { to: '/knowledge/read-financials', label: 'Read Financials' },
   { to: '/knowledge/bulletins', label: 'Bulletins' },
