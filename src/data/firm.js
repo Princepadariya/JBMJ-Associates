@@ -8,8 +8,8 @@ export const firm = {
   phone: '+91 90167 48980',
   phoneHref: 'tel:+919016748980',
   whatsapp: '919016748980', // digits only, with country code
-  email: 'jbmj.llp@outlook.com',
-  emailHref: 'mailto:jbmj.llp@outlook.com',
+  email: 'admin@jbmjllp.com',
+  emailHref: 'mailto:admin@jbmjllp.com',
   // Primary office line (kept for any single-address usage)
   address: 'A-1016, RK Iconic, Near Sheetal Park, 150ft Ring Road, Rajkot – 360 006',
   // All office locations
