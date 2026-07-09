@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import {
   FiMapPin,
@@ -56,26 +55,28 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="footer__col">
+        <div className="footer__col footer__col--contact">
           <h4 className="footer__head">Get in touch</h4>
-          <ul className="footer__contact">
+          <div className="footer__offices">
             {firm.offices.map((o) => (
-              <Fragment key={o.city}>
-                <li>
+              <div className="footer__office-block" key={o.city}>
+                <div className="footer__office-addr">
                   <FiMapPin />
                   <span>
                     <strong className="footer__office">{o.city} Office</strong>
                     {o.lines}{o.state ? `, ${o.state}` : ''}{o.pincode ? ` – ${o.pincode}` : ''}
                   </span>
-                </li>
+                </div>
                 {o.city === 'Rajkot' && (
-                  <li><FiPhone /><a href={firm.phoneHref}>{firm.phone}</a></li>
+                  <div className="footer__office-phone"><FiPhone /><a href={firm.phoneHref}>{firm.phone}</a></div>
                 )}
                 {o.city === 'Surat' && (
-                  <li><FiPhone /><a href="tel:+917041843541">+91 70418 43541</a></li>
+                  <div className="footer__office-phone"><FiPhone /><a href="tel:+917041843541">+91 70418 43541</a></div>
                 )}
-              </Fragment>
+              </div>
             ))}
+          </div>
+          <ul className="footer__contact">
             <li><FiMail /><a href={firm.emailHref}>{firm.email}</a></li>
             <li><FiClock /><span>{firm.hours}</span></li>
           </ul>

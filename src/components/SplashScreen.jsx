@@ -141,7 +141,6 @@ export default function SplashScreen() {
       <div className="splash__grid" />
       <span className="splash__scan splash__scan--left" />
       <span className="splash__scan splash__scan--right" />
-      <span className="splash__dot" />
       <div className="splash__frame">
         <span className="splash__corner splash__corner--tl" />
         <span className="splash__corner splash__corner--tr" />
@@ -164,7 +163,7 @@ export default function SplashScreen() {
         <div className="splash__inner">
           <img
             ref={logoRef}
-            src="/images/CA-India.jpg"
+            src="/images/CA_india.png"
             alt=""
             className="splash__logo"
           />

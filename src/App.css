@@ -2704,9 +2704,51 @@ a.contact-item__value:hover {
 
 .footer__grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1.3fr;
+  grid-template-columns: 1.1fr 0.7fr 0.7fr 2.6fr;
   gap: 40px;
   padding: 72px 24px 56px;
+}
+
+.footer__col--contact {
+  min-width: 0;
+}
+
+.footer__offices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 20px;
+  margin-bottom: 18px;
+}
+
+.footer__office-block {
+  flex: 1 1 150px;
+  min-width: 150px;
+}
+
+.footer__office-addr {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 0.92rem;
+}
+
+.footer__office-addr svg {
+  color: var(--gold-400);
+  flex: none;
+  margin-top: 4px;
+}
+
+.footer__office-phone {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.92rem;
+  margin-top: 8px;
+}
+
+.footer__office-phone svg {
+  color: var(--gold-400);
+  flex: none;
 }
 
 .footer__about {
