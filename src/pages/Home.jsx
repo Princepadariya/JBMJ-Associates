@@ -85,13 +85,9 @@ function magneticMove(e) {
 function magneticLeave(e) {
   e.currentTarget.style.transform = ''
 }
-import SplashScreen from '../components/SplashScreen'
 import SectionHeading from '../components/SectionHeading'
-import TeamCard from '../components/TeamCard'
-import Faq from '../components/Faq'
 import Testimonials from '../components/Testimonials'
 import { serviceCategories } from '../data/services'
-import { team } from '../data/team'
 import { industries } from '../data/industries'
 
 const stats = [
@@ -153,7 +149,6 @@ export default function Home() {
 
   return (
     <>
-      <SplashScreen />
       {/* ============== HERO ============== */}
       <section className="hero">
         <div className="hero__bg" aria-hidden="true">
@@ -450,62 +445,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============== TEAM PREVIEW ============== */}
-      <section className="section team-pre">
-        <div className="container">
-          <div className="services-sec__head">
-            <SectionHeading
-              index="05"
-              eyebrow="Our People"
-              title="Meet the core team"
-              lead="Qualified professionals who lead every engagement personally — combining technical depth with practical business sense."
-            />
-            <Link to="/team" className="btn btn--outline services-sec__all">
-              Full team <FiArrowRight />
-            </Link>
-          </div>
-          <div className="team-grid">
-            {team.map((m) => (
-              <div key={m.id} className="reveal">
-                <TeamCard member={m} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ============== TESTIMONIALS ============== */}
       <section className="section why-sec">
         <div className="container">
           <SectionHeading
             center
             light
-            index="06"
+            index="05"
             eyebrow="Client Voices"
             title="Trusted by businesses that value diligence"
             lead="Real results across audit, tax, funding and corporate compliance — here’s what working with JBMJ feels like."
           />
         </div>
         <Testimonials />
-      </section>
-
-      {/* ============== FAQ ============== */}
-      <section className="section faq-sec">
-        <div className="container faq-wrap">
-          <SectionHeading
-            center
-            index="07"
-            eyebrow="FAQ"
-            title="Frequently asked questions"
-            lead="Quick answers to what clients ask us most. Need something specific? Just reach out."
-          />
-          <Faq limit={6} />
-          <div className="faq-more reveal">
-            <Link to="/faq" className="btn btn--outline">
-              See all FAQs <FiArrowRight />
-            </Link>
-          </div>
-        </div>
       </section>
 
       {/* ============== CTA ============== */}
