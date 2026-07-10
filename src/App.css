@@ -1657,8 +1657,18 @@
 }
 
 @keyframes team-highlight-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(29, 78, 137, 0); border-color: var(--line); }
-  20%, 60% { box-shadow: 0 0 0 4px rgba(29, 78, 137, 0.25); border-color: var(--navy-700); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(29, 78, 137, 0);
+    border-color: var(--line);
+  }
+
+  20%,
+  60% {
+    box-shadow: 0 0 0 4px rgba(29, 78, 137, 0.25);
+    border-color: var(--navy-700);
+  }
 }
 
 /* Photo area — fixed proportions so a real headshot always sits well,
@@ -2704,7 +2714,7 @@ a.contact-item__value:hover {
 
 .footer__grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.7fr 0.7fr 2.6fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
   gap: 40px;
   padding: 72px 24px 56px;
 }
@@ -2713,16 +2723,37 @@ a.contact-item__value:hover {
   min-width: 0;
 }
 
+.footer__offices-row {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--line-dark);
+  padding-top: 40px;
+  margin-top: 16px;
+}
+
 .footer__offices {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 18px 20px;
   margin-bottom: 18px;
 }
 
+@media (max-width: 768px) {
+  .footer__offices {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
 .footer__office-block {
-  flex: 1 1 150px;
-  min-width: 150px;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .footer__office-block {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
 }
 
 .footer__office-addr {
@@ -4199,7 +4230,8 @@ a.contact-item__value:hover {
   color: var(--navy-800);
   cursor: pointer;
   user-select: none;
-  list-style: none; /* Hide default arrow in some browsers */
+  list-style: none;
+  /* Hide default arrow in some browsers */
   display: flex;
   justify-content: space-between;
   align-items: center;

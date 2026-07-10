@@ -57,6 +57,17 @@ export default function Footer() {
 
         <div className="footer__col footer__col--contact">
           <h4 className="footer__head">Get in touch</h4>
+
+          <ul className="footer__contact">
+            <li><FiMail /><a href={firm.emailHref}>{firm.email}</a></li>
+            <li><FiClock /><span>{firm.hours}</span></li>
+          </ul>
+          <Link to="/contact" className="footer__cta">
+            Book a consultation <FiArrowUpRight />
+          </Link>
+        </div>
+
+        <div className="footer__offices-row">
           <div className="footer__offices">
             {firm.offices.map((o) => (
               <div className="footer__office-block" key={o.city}>
@@ -76,13 +87,6 @@ export default function Footer() {
               </div>
             ))}
           </div>
-          <ul className="footer__contact">
-            <li><FiMail /><a href={firm.emailHref}>{firm.email}</a></li>
-            <li><FiClock /><span>{firm.hours}</span></li>
-          </ul>
-          <Link to="/contact" className="footer__cta">
-            Book a consultation <FiArrowUpRight />
-          </Link>
         </div>
       </div>
 
